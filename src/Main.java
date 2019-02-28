@@ -151,9 +151,21 @@ public class Main extends Application {
 			fields[14][15].setGraphic(new ImageView(hero_up));
 
 			scoreList.setText(getScoreList());
+
+
+			//_____------_____-------_____
+			Alert al = new Alert(Alert.AlertType.ERROR);
+			al.setContentText("Test");
+			al.showAndWait();
+
+			InfoScreen ifa = new InfoScreen();
+
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+
+
 	}
 
 	public void playerMoved(int delta_x, int delta_y, String direction) {
@@ -229,11 +241,7 @@ public class Main extends Application {
 		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
 
-		//sender = new SendThread(outToServer);
-		//reciever = new RecieveThread(inFromServer);
 
-		//sender.start();
-		//reciever.start();
 
 	}
 }

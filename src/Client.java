@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 
 public class Client {
+    //THIS CLASS IS TO BE DELETED
 
     public static void main(String[] args) throws Exception, IOException {
         String ip = "localhost";
@@ -27,6 +28,9 @@ public class Client {
 
         //sender.start();
         //reciever.start();
+
+
+
 
 
     }

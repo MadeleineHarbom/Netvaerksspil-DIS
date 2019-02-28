@@ -15,12 +15,21 @@ public class Server {
         SendThread sender;
         RecieveThread reciever;
 
-        Map people = new HashMap<String, String>();
-        people.put("Karl", "10.24.6.117");
-        people.put("Made", "10.24.68.3");
+
+
+        Player p1 = new Player("Made", 1, 1, "UP");
+        Player p2 = new Player("Karl", 1, 1, "DOWN");
+
+        Map people = new HashMap<String, Player>();
+        people.put("10.24.6.117", p2);
+        people.put("10.24.68.3", p1);
+
+        //Map players = new HashMap<String, Player>(;
 
         ServerSocket welcomeSocket = new ServerSocket(6666);
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
+
+
 
         while (true) {
             // der oprettes en connectionSocket til hver klient der vil have forbindelse
