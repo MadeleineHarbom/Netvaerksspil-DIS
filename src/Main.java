@@ -17,8 +17,8 @@ import javafx.scene.text.*;
 
 public class Main extends Application {
 
-	String ip = "localhost";
-	int port = 6666;
+	static String ip = "localhost";
+	static int port = 6666;
 
 
 	SendThread sender;
@@ -77,7 +77,8 @@ public class Main extends Application {
 	// -------------------------------------------
 
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage){
+
 		try {
 			GridPane grid = new GridPane();
 			grid.setHgap(10);
@@ -211,11 +212,17 @@ public class Main extends Application {
 		return null;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
+		try {
+			connectToServer();
+		}
+		catch (Exception e) {
+			System.out.println("FAIL!!!");
+		}
 		launch(args);
 	}
 
-	public void connectToServer() throws Exception{
+	public static void connectToServer() throws Exception{
 		Socket clientSocket = new Socket(ip, port); //(serverIP, port serveren lytter paa)
 		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 
