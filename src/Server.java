@@ -2,6 +2,7 @@ package src;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -27,24 +28,25 @@ public class Server {
         people.put("10.24.68.3", p1);
 
         //Map players = new HashMap<String, Player>(;
-
-        ServerSocket welcomeSocket = new ServerSocket(6666);
-        BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
-
-
-
-        while (true) {
-            // der oprettes en connectionSocket til hver klient der vil have forbindelse
-            Socket connectionSocket = welcomeSocket.accept();
-
-            // input for klient
-            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-
-            // output til klient
-            DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
-
-            System.out.println("Test");
+        
+        
+        if (args.length != 1) {
+            System.err.println("Usage: Netværksspil Server <port number>");
+            System.exit(1);
         }
 
-    }
+            int portNumber = Integer.parseInt(args[0]);
+            boolean listening = true;
+            
+            try (ServerSocket serverSocket = new ServerSocket(portNumber)) { 
+                while (listening) {
+    	            new ServerThread(serverSocket.accept()).start();
+    	        }
+    	    } catch (IOException e) {
+                System.err.println("Could not listen on port " + portNumber);
+                System.exit(-1);
+            }
+       }
+
+    
 }

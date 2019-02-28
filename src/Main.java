@@ -220,10 +220,10 @@ public class Main extends Application {
 	}
 
 	public static void connectToServer() throws Exception{
-//		Socket clientSocket = new Socket(ip, port); //(serverIP, port serveren lytter paa)
-//		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-//
-//		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+		Socket clientSocket = new Socket(ip, port); //(serverIP, port serveren lytter paa)
+		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+
+		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
 
 		//sender = new SendThread(outToServer);
