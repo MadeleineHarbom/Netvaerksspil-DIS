@@ -1,3 +1,5 @@
+package src;
+
 import java.io.BufferedReader;
 
 public class RecieveThread extends Thread {
@@ -6,7 +8,6 @@ public class RecieveThread extends Thread {
 
     public RecieveThread(BufferedReader bf) {
         this.incoming = bf;
-
     }
 
     @Override

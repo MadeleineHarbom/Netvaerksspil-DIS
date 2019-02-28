@@ -1,3 +1,5 @@
+package src;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -17,7 +19,7 @@ import javafx.scene.text.*;
 
 public class Main extends Application {
 
-	static String ip = "localhost";
+	static String ip = "10.24.68.3";
 	static int port = 6666;
 
 
@@ -34,6 +36,7 @@ public class Main extends Application {
 	public static final int size = 20; 
 	public static final int scene_height = size * 20 + 100;
 	public static final int scene_width = size * 20 + 200;
+	
 
 	public static Image image_floor;
 	public static Image image_wall;
@@ -75,10 +78,9 @@ public class Main extends Application {
 	// | boardGrid (0,1)          | scorelist    |
 	// |                          | (1,1)        |
 	// -------------------------------------------
-
 	@Override
-	public void start(Stage primaryStage){
-
+	public void start(Stage primaryStage) {
+		
 		try {
 			GridPane grid = new GridPane();
 			grid.setHgap(10);
@@ -151,21 +153,9 @@ public class Main extends Application {
 			fields[14][15].setGraphic(new ImageView(hero_up));
 
 			scoreList.setText(getScoreList());
-
-
-			//_____------_____-------_____
-			Alert al = new Alert(Alert.AlertType.ERROR);
-			al.setContentText("Test");
-			al.showAndWait();
-
-			InfoScreen ifa = new InfoScreen();
-
-
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-
-
 	}
 
 	public void playerMoved(int delta_x, int delta_y, String direction) {
@@ -224,25 +214,25 @@ public class Main extends Application {
 		return null;
 	}
 
-	public static void main(String[] args)  {
-		try {
-			connectToServer();
-		}
-		catch (Exception e) {
-			System.out.println("FAIL!!!");
-		}
+	public static void main(String[] args) throws Exception {
+		connectToServer();
 		launch(args);
 	}
 
 	public static void connectToServer() throws Exception{
-		Socket clientSocket = new Socket(ip, port); //(serverIP, port serveren lytter paa)
-		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+//		Socket clientSocket = new Socket(ip, port); //(serverIP, port serveren lytter paa)
+//		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+//
+//		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
+		//sender = new SendThread(outToServer);
+		//reciever = new RecieveThread(inFromServer);
 
-
+		//sender.start();
+		//reciever.start();
 
 	}
+
 }
 
