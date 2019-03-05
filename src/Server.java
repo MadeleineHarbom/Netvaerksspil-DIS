@@ -15,7 +15,7 @@ public class Server {
     //Copy pasta
     public static void main(String[] args) throws Exception {
     	
-    	int portNumber = 6666;
+    	int portNumber = 7777;
     	ServerSocket serverSocket = new ServerSocket(portNumber);
 
 		ArrayList<ServerThread> mahThreads = new ArrayList<>();
@@ -27,6 +27,10 @@ public class Server {
     		st.start();
     		mahThreads.add(st);
     	}
+    	//TODO Serveren skal skrive til alle clients
+		//TODO Serveren skal en client kunne skrivew til alle clients (inklusive sig selv)
+		//TODO Login og spilstart (disign) + Liste med players og IP
+		//TODO Queue
 
     	//when dequeue
 		//for each ST
