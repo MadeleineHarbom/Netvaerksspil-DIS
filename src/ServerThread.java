@@ -6,11 +6,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ServerThread extends Thread {
 	
 	Socket socket = null;
+	ArrayList<Player> players;
+
 	
+	public ServerThread(Socket socket, ArrayList<Player> players) {
+		this.socket = socket;
+	}
+
 	public ServerThread(Socket socket) {
 		this.socket = socket;
 	}

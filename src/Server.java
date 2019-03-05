@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,13 +16,21 @@ public class Server {
     public static void main(String[] args) throws Exception {
     	
     	int portNumber = 6666;
-    	
     	ServerSocket serverSocket = new ServerSocket(portNumber);
-    	
-    	while (true) {
+
+		ArrayList<ServerThread> mahThreads = new ArrayList<>();
+
+    	while (mahThreads.size() != 2) {
     		//accepterer en client når den forsøger at forbinde, og starter en serverSocketTråd
-    		new ServerThread(serverSocket.accept()).start();
+
+    		ServerThread st = new ServerThread(serverSocket.accept());
+    		st.start();
+    		mahThreads.add(st);
     	}
+
+    	//when dequeue
+		//for each ST
+		//push
     	
     	
         //kode fra Rabeea

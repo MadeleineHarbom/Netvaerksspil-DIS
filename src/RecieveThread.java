@@ -6,7 +6,7 @@ import java.io.IOException;
 public class RecieveThread extends Thread {
 
     private BufferedReader sender;
-    private String sendername;
+
 
 
 
@@ -18,7 +18,7 @@ public class RecieveThread extends Thread {
         while (true) {
             try {
                 String s = sender.readLine();
-                System.out.println("FROM " + this.sendername +": "  + s);
+                System.out.println("Message: "  + s);
             }
             catch (IOException e) {
                 System.out.println("IO exception");

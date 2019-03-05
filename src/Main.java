@@ -19,7 +19,7 @@ import javafx.scene.text.*;
 
 public class Main extends Application {
 
-	static String ip = "10.24.68.163";
+	static String ip = "localhost";//"10.24.4.97";
 	static int port = 6666;
 
 
