@@ -23,6 +23,13 @@ public class ServerThread extends Thread {
 			
 			//Den "pipe" der er til klienten.
 			DataOutputStream outFromServer = new DataOutputStream(socket.getOutputStream());
+			
+			SendThread sender = new SendThread(inFromClient, outFromServer);
+			RecieveThread reciever = new RecieveThread(inFromClient);
+
+			sender.start();
+			reciever.start();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
