@@ -18,7 +18,7 @@ public class RecieveThread extends Thread {
         while (true) {
             try {
                 String s = sender.readLine();
-                System.out.println("Message: "  + s);
+                System.out.println("RecieveThread: "  + s);
             }
             catch (IOException e) {
                 System.out.println("IO exception");

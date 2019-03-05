@@ -1,5 +1,7 @@
 package src;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -11,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Server {
+	static ArrayList<ServerThread> mahThreads = new ArrayList<>();
 
     //Copy pasta
     public static void main(String[] args) throws Exception {
@@ -18,15 +21,18 @@ public class Server {
     	int portNumber = 7777;
     	ServerSocket serverSocket = new ServerSocket(portNumber);
 
-		ArrayList<ServerThread> mahThreads = new ArrayList<>();
 
-    	while (mahThreads.size() != 2) {
+    	while (mahThreads.size() != 3) {
     		//accepterer en client når den forsøger at forbinde, og starter en serverSocketTråd
-
-    		ServerThread st = new ServerThread(serverSocket.accept());
+			Socket sock = serverSocket.accept();
+    		ServerThread st = new ServerThread(sock);
     		st.start();
     		mahThreads.add(st);
     	}
+
+
+
+
     	//TODO Serveren skal skrive til alle clients
 		//TODO Serveren skal en client kunne skrivew til alle clients (inklusive sig selv)
 		//TODO Login og spilstart (disign) + Liste med players og IP
@@ -37,24 +43,15 @@ public class Server {
 		//push
     	
     	
-        //kode fra Rabeea
 
-//        SendThread sender;
-//        RecieveThread reciever;
-//
-//
-//
-//        Player p1 = new Player("Made", 1, 1, "UP");
-//        Player p2 = new Player("Karl", 1, 1, "DOWN");
-
-//        Map people = new HashMap<String, Player>();
-//        people.put("10.24.6.117", p2);
-//        people.put("10.24.68.3", p1);
-
-        //Map players = new HashMap<String, Player>(;
         
         
        }
+	public static void broadcast(String s) throws IOException {
+		for (ServerThread st : mahThreads) {
+			st.sendMsg(s);
+		}
+	}
 
     
 }
