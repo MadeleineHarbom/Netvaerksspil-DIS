@@ -11,7 +11,7 @@ public class Client {
 
     public static void main(String[] args) throws Exception, IOException {
         String ip = "localhost";
-        int portNumber = 6666;
+        int port = 6666;
 
 
         SendThread sender;
