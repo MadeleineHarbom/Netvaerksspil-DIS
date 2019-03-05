@@ -224,10 +224,13 @@ public class Main extends Application {
 		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 
 		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+		
+		 //Læser et input fra klienten for at teste 
+        BufferedReader inFromClient = new BufferedReader(new InputStreamReader(System.in));
 
 
-		//sender = new SendThread(outToServer);
-		//reciever = new RecieveThread(inFromServer);
+		sender = new SendThread(outToServer);
+		reciever = new RecieveThread(inFromServer);
 
 		//sender.start();
 		//reciever.start();
