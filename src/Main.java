@@ -23,11 +23,6 @@ public class Main extends Application {
 	static int port = 6666;
 
 
-	SendThread sender;
-	RecieveThread reciever;
-
-
-
 
 
 
@@ -229,11 +224,11 @@ public class Main extends Application {
         BufferedReader inFromClient = new BufferedReader(new InputStreamReader(System.in));
 
 
-		sender = new SendThread(outToServer);
-		reciever = new RecieveThread(inFromServer);
+		SendThread sender = new SendThread(inFromClient, outToServer);
+		RecieveThread reciever = new RecieveThread(inFromServer);
 
-		//sender.start();
-		//reciever.start();
+		sender.start();
+		reciever.start();
 
 	}
 

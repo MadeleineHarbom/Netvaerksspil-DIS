@@ -21,9 +21,6 @@ public class ServerThread extends Thread {
 			//Tager imod kommunikation fra klienten
 			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
-			//Skal forsøge at sende en besked til klienten, skal måske være i serverklassen.
-			BufferedReader inFromServer = new BufferedReader(new InputStreamReader(System.in));
-			
 			//Den "pipe" der er til klienten.
 			DataOutputStream outFromServer = new DataOutputStream(socket.getOutputStream());
 		} catch (IOException e) {

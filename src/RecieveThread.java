@@ -1,4 +1,4 @@
-//package src;
+package src;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,9 +10,8 @@ public class RecieveThread extends Thread {
 
 
 
-    public RecieveThread (BufferedReader bf, String countername) {
+    public RecieveThread (BufferedReader bf) {
         this.sender = bf;
-        this.sendername = countername;
     }
 
     public void run() {
