@@ -18,9 +18,6 @@ public class Server {
     	
     	ServerSocket serverSocket = new ServerSocket(portNumber);
     	
-    	//Skal forsøge at sende en besked til klienten, skal måske være i serverklassen.
-		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(System.in));
-    	
     	while (true) {
     		//accepterer en client når den forsøger at forbinde, og starter en serverSocketTråd
     		new ServerThread(serverSocket.accept()).start();

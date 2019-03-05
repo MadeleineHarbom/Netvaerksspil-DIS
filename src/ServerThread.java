@@ -24,7 +24,10 @@ public class ServerThread extends Thread {
 			//Den "pipe" der er til klienten.
 			DataOutputStream outFromServer = new DataOutputStream(socket.getOutputStream());
 			
-			SendThread sender = new SendThread(inFromClient, outFromServer);
+			//Skal forsøge at sende en besked til klienten, skal måske være i serverklassen.
+			BufferedReader inFromServer = new BufferedReader(new InputStreamReader(System.in));
+			
+			SendThread sender = new SendThread(inFromServer, outFromServer);
 			RecieveThread reciever = new RecieveThread(inFromClient);
 
 			sender.start();
