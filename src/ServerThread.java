@@ -1,6 +1,7 @@
 package src;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -14,28 +15,23 @@ public class ServerThread extends Thread {
 		this.socket = socket;
 	}
 	
+	
 	public void run() {
-		try (
-	            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-	            BufferedReader in = new BufferedReader(
-	                new InputStreamReader(
-	                    socket.getInputStream()));
-	        ) {
-	            String inputLine, outputLine;
-	            KnockKnockProtocol kkp = new KnockKnockProtocol();
-	            outputLine = kkp.processInput(null);
-	            out.println(outputLine);
-
-	            while ((inputLine = in.readLine()) != null) {
-	                outputLine = kkp.processInput(inputLine);
-	                out.println(outputLine);
-	                if (outputLine.equals("Bye"))
-	                    break;
-	            }
-	            socket.close();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
+		try {
+			//Tager imod kommunikation fra klienten
+			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			
+			//Skal forsøge at sende en besked til klienten, skal måske være i serverklassen.
+			BufferedReader inFromServer = new BufferedReader(new InputStreamReader(System.in));
+			
+			//Den "pipe" der er til klienten.
+			DataOutputStream outFromServer = new DataOutputStream(socket.getOutputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Skal også startes en sende og en modtage tråd, måske noget af ovenstående skal findes i disse tråde, ellers kan de tilføjes som parametre
 	}
 
 }

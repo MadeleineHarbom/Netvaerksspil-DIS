@@ -11,7 +11,7 @@ public class Client {
 
     public static void main(String[] args) throws Exception, IOException {
         String ip = "localhost";
-        int port = 6666;
+        int portNumber = 6666;
 
 
         SendThread sender;
@@ -19,9 +19,13 @@ public class Client {
 
 
 
-        Socket clientSocket = new Socket(ip, port); //(serverIP, port serveren lytter paa)
+        Socket clientSocket = new Socket(ip, portNumber); //(serverIP, port serveren lytter paa)
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-
+        
+        //Læser et input fra klienten for at teste 
+        BufferedReader inFromClient = new BufferedReader(new InputStreamReader(System.in));
+        
+        //Læser serverens besked
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
 
