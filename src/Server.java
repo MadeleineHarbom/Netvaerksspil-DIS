@@ -1,6 +1,5 @@
 package src;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -14,6 +13,7 @@ import java.util.Map;
 
 public class Server {
 	static ArrayList<ServerThread> mahThreads = new ArrayList<>();
+	static boolean gameon = false;
 
     //Copy pasta
     public static void main(String[] args) throws Exception {
@@ -22,19 +22,14 @@ public class Server {
     	ServerSocket serverSocket = new ServerSocket(portNumber);
 
 
-    	while (mahThreads.size() != 3) {
-    		//accepterer en client når den forsøger at forbinde, og starter en serverSocketTråd
+    	while (!gameon) { //When size == readycounter
+    		//accepterer en client når den forsøger at forbinde, og starter en serverSocketTraad
 			Socket sock = serverSocket.accept();
     		ServerThread st = new ServerThread(sock);
     		st.start();
     		mahThreads.add(st);
     	}
 
-
-
-
-    	//TODO Serveren skal skrive til alle clients
-		//TODO Serveren skal en client kunne skrivew til alle clients (inklusive sig selv)
 		//TODO Login og spilstart (disign) + Liste med players og IP
 		//TODO Queue
 
@@ -51,6 +46,24 @@ public class Server {
 		for (ServerThread st : mahThreads) {
 			st.sendMsg(s);
 		}
+	}
+
+	public static boolean login(String s) {
+    	return true;
+	}
+
+	public static void requestGameStart() {
+    	for (ServerThread st : mahThreads) {
+    		if (!st.ready) {
+    			return;
+			}
+		}
+		startGame();
+	}
+
+	public static void startGame() {
+		System.out.println("Game started");
+		gameon = true;
 	}
 
     

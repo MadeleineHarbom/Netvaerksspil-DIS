@@ -15,6 +15,7 @@ public class ServerThread extends Thread {
 	SendThread sender;
 	RecieveThread reciever;
 	DataOutputStream pusher;
+	boolean ready = false;
 
 
 	public ServerThread(Socket socket, ArrayList<Player> players) {
@@ -41,20 +42,9 @@ public class ServerThread extends Thread {
 			while (true) {
 				String message = inFromClient.readLine();
 				Server.broadcast(message);
+				decode(message);
 			}
 
-			//Den "pipe" der er til klienten.
-			//DataOutputStream outFromServer = new DataOutputStream(socket.getOutputStream());
-			//pusher = new DataOutputStream(socket.getOutputStream());
-			
-			//Skal forsøge at sende en besked til klienten, skal måske være i serverklassen.
-			//BufferedReader inFromServer = new BufferedReader(new InputStreamReader(System.in));
-			
-			//this.sender = new SendThread(inFromServer, outFromServer);
-			//this.reciever = new RecieveThread(inFromClient);
-
-			//sender.start();
-			//reciever.start();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -66,6 +56,16 @@ public class ServerThread extends Thread {
 
 	public void sendMsg(String s) throws IOException {
 		this.pusher.writeBytes(s + "\n");
+	}
+
+	public void decode(String message) {
+		if (message.toLowerCase().equals("ready")) {
+			this.ready = true;
+			Server.requestGameStart();
+		}
+		else {
+			System.out.println(message);
+		}
 	}
 
 }

@@ -22,7 +22,7 @@ public class SendThread extends Thread {
 		while(true) {
 			try {
 				message = inputMessage.readLine();
-				messageOut.writeBytes("SendThread" + message + '\n');
+				messageOut.writeBytes(message + '\n');
 			} catch (IOException e) {
 				System.out.println("Error occured in ThreadSender");
 				e.printStackTrace();
