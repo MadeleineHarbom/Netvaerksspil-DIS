@@ -1,4 +1,4 @@
-package src;
+package game2019;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -6,27 +6,32 @@ import java.io.IOException;
 
 public class SendThread extends Thread {
 	String message  = ""; 
-	BufferedReader inputMessage;
+	Player me;
 	DataOutputStream messageOut;
+	String before;
 	
 	// tilføjes senere og til constructer
 	//Player me;
 	
-	public SendThread(BufferedReader inputMessage, DataOutputStream messageOut) {
-		this.inputMessage = inputMessage;
+	public SendThread(Player me, DataOutputStream messageOut) {
+		this.me = me;
 		this.messageOut = messageOut;
-	
 	}
 	
 	public void run() {
 		while(true) {
-			try {
-				message = inputMessage.readLine();
+			before = me.getPosition();
+			if (!before.equals(me.getPosition())) {
+			try { 
+				System.out.println(me.getPosition());
+				message = me.getPosition();
 				messageOut.writeBytes(message + '\n');
+				System.out.println("besked sendt");
 			} catch (IOException e) {
 				System.out.println("Error occured in ThreadSender");
 				e.printStackTrace();
 			}
+		}
 		}
 	}
 

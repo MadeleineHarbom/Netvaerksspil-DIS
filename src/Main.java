@@ -1,4 +1,4 @@
-package src;
+package game2019;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -21,9 +19,8 @@ import javafx.scene.text.*;
 
 public class Main extends Application {
 
-	static String ip = "localhost";
+	static String ip = "localhost";//"10.24.4.97";
 	static int port = 7777;
-
 
 
 
@@ -45,7 +42,7 @@ public class Main extends Application {
 	private Label[][] fields;
 	private TextArea scoreList;
 	
-	private static String[] board = {    // 20x20
+	private  String[] board = {    // 20x20
 			"wwwwwwwwwwwwwwwwwwww",
 			"w        ww        w",
 			"w w  w  www w  w  ww",
@@ -139,14 +136,12 @@ public class Main extends Application {
 				}
 			});
 			
-            // Setting up standard players
+            // Setting up start positions for standard players located in connecttoserver
 			
-			me = new Player("Orville",9,4,"up");
-			players.add(me);
+			
 			fields[9][4].setGraphic(new ImageView(hero_up));
 
-			Player harry = new Player("Harry",14,15,"up");
-			players.add(harry);
+			
 			fields[14][15].setGraphic(new ImageView(hero_up));
 
 			scoreList.setText(getScoreList());
@@ -212,81 +207,30 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String[] info = getinfo();
-		launch(args);
 		connectToServer();
-
-
+		launch(args);
 	}
 
 	public static void connectToServer() throws Exception{
+		
+		me = new Player("Orville",9,4,"up");
+		players.add(me);
+		
+		Player harry = new Player("Harry",14,15,"up");
+		players.add(harry);
+		
 		Socket clientSocket = new Socket(ip, port); //(serverIP, port serveren lytter paa)
 		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 
 		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-		
-		 //Læser et input fra klienten for at teste 
-        BufferedReader inFromClient = new BufferedReader(new InputStreamReader(System.in));
 
-
-		SendThread sender = new SendThread(inFromClient, outToServer);
+		SendThread sender = new SendThread(me, outToServer);
 		RecieveThread reciever = new RecieveThread(inFromServer);
 
 		sender.start();
 		reciever.start();
 
-
 	}
-
-	public static String[] getinfo() {
-		Scanner s = new Scanner(System.in);
-		String[] stringarray = new String[2];
-		System.out.println("Navn?");
-		stringarray[0] = s.next();
-		System.out.println("IP");
-		stringarray[1] = s.next();
-		return stringarray;
-
-	}
-
-	public static int[] randomizePosition() {
-		int[] position = new int[2];
-		Random r = new Random();
-		int x =r.nextInt((20 - 0) + 1);
-		int y = r.nextInt((20 - 0) + 1);
-
-		while (board[y].charAt(x)=='w') {
-			x = r.nextInt((20 - 0) + 1);
-			y = r.nextInt((20 - 0) + 1);
-		}
-		position[0] = x;
-		position[1] = y;
-		return position;
-
-	}
-
-	public static Player createPlayer(String[] info) {
-		//Bruger ikke IP lige nu
-		Random r = new Random();
-		int[] pos = randomizePosition();
-		Player p;
-		int dir = r.nextInt((3 - 0) + 1);
-		if (dir==0) {
-			p = new Player(info[0], pos[0], pos[1], "up");
-		}
-		else if (dir==1) {
-			p = new Player(info[0], pos[0], pos[1], "down");
-		}
-		else if (dir==2) {
-			p = new Player(info[0], pos[0], pos[1], "left");
-		}
-		else  {
-			p = new Player(info[0], pos[0], pos[1], "right");
-		}
-		return p;
-	}
-
-
 
 }
 
