@@ -55,6 +55,7 @@ public class InfoScreen extends Application {
     int listInt = 200;
 
 
+
     private void initGridPane(GridPane gridPane) {
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(20);
@@ -93,18 +94,17 @@ public class InfoScreen extends Application {
                 gridPane.setVgap(10);
                 gridPane.setGridLinesVisible(false);
 
+
                 lblNavn = new Label("Navn");
                 gridPane.add(lblNavn, 0, 0);
 
 
 
-                txfNavn = new TextField();
-                txfNavn.setEditable(true);
-                gridPane.add(txfNavn, 1, 0);
+
 
 
                 btnClose = new Button("Cancel");
-                btnClose.setOnAction(event -> closeAction());
+                //btnClose.setOnAction(event -> closeAction());
                 gridPane.add(btnClose, 2, 3);
 
 
@@ -131,13 +131,9 @@ public class InfoScreen extends Application {
             b.showAndWait();
         }
 
-        Main m = new Main();
 
-        m.start(stage);
+
         OpretPopUp popup = new OpretPopUp();
-        popup.showAndWait();
-
-             OpretPopUp popup = new OpretPopUp();
         popup.showAndWait();
 
     }

@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -43,7 +45,7 @@ public class Main extends Application {
 	private Label[][] fields;
 	private TextArea scoreList;
 	
-	private  String[] board = {    // 20x20
+	private static String[] board = {    // 20x20
 			"wwwwwwwwwwwwwwwwwwww",
 			"w        ww        w",
 			"w w  w  www w  w  ww",
@@ -210,8 +212,11 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) throws Exception {
-		connectToServer();
+		String[] info = getinfo();
 		launch(args);
+		connectToServer();
+
+
 	}
 
 	public static void connectToServer() throws Exception{
@@ -232,6 +237,55 @@ public class Main extends Application {
 
 
 	}
+
+	public static String[] getinfo() {
+		Scanner s = new Scanner(System.in);
+		String[] stringarray = new String[2];
+		System.out.println("Navn?");
+		stringarray[0] = s.next();
+		System.out.println("IP");
+		stringarray[1] = s.next();
+		return stringarray;
+
+	}
+
+	public static int[] randomizePosition() {
+		int[] position = new int[2];
+		Random r = new Random();
+		int x =r.nextInt((20 - 0) + 1);
+		int y = r.nextInt((20 - 0) + 1);
+
+		while (board[y].charAt(x)=='w') {
+			x = r.nextInt((20 - 0) + 1);
+			y = r.nextInt((20 - 0) + 1);
+		}
+		position[0] = x;
+		position[1] = y;
+		return position;
+
+	}
+
+	public static Player createPlayer(String[] info) {
+		//Bruger ikke IP lige nu
+		Random r = new Random();
+		int[] pos = randomizePosition();
+		Player p;
+		int dir = r.nextInt((3 - 0) + 1);
+		if (dir==0) {
+			p = new Player(info[0], pos[0], pos[1], "up");
+		}
+		else if (dir==1) {
+			p = new Player(info[0], pos[0], pos[1], "down");
+		}
+		else if (dir==2) {
+			p = new Player(info[0], pos[0], pos[1], "left");
+		}
+		else  {
+			p = new Player(info[0], pos[0], pos[1], "right");
+		}
+		return p;
+	}
+
 
 
 }
