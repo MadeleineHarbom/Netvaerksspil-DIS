@@ -230,7 +230,9 @@ public class Main extends Application {
 		sender.start();
 		reciever.start();
 
+
 	}
+
 
 }
 
