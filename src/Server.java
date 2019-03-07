@@ -13,13 +13,41 @@ import java.util.Map;
 
 public class Server {
 	static ArrayList<ServerThread> mahThreads = new ArrayList<>();
+	static ArrayList<Player> players = new ArrayList<>(); //lave eventuelt til hashmap
 	static boolean gameon = false;
+
+    private  String[] board = {    // 20x20
+            "wwwwwwwwwwwwwwwwwwww",
+            "w        ww        w",
+            "w w  w  www w  w  ww",
+            "w w  w   ww w  w  ww",
+            "w  w               w",
+            "w w w w w w w  w  ww",
+            "w w     www w  w  ww",
+            "w w     w w w  w  ww",
+            "w   w w  w  w  w   w",
+            "w     w  w  w  w   w",
+            "w ww ww        w  ww",
+            "w  w w    w    w  ww",
+            "w        ww w  w  ww",
+            "w         w w  w  ww",
+            "w        w     w  ww",
+            "w  w              ww",
+            "w  w www  w w  ww ww",
+            "w w      ww w     ww",
+            "w   w   ww  w      w",
+            "wwwwwwwwwwwwwwwwwwww"
+    };
 
     //Copy pasta
     public static void main(String[] args) throws Exception {
     	
     	int portNumber = 7777;
     	ServerSocket serverSocket = new ServerSocket(portNumber);
+
+    	ServerThread[] queue = new ServerThread[10000];
+    	int counter = 0;
+    	int size = 0;
 
 
     	while (!gameon) { //When size == readycounter
@@ -30,17 +58,25 @@ public class Server {
     		mahThreads.add(st);
     	}
 
+    	while (gameon) {
+    	    if (queue[counter] != null) {
+    	        //handle thread
+                counter++;
+            }
+        }
+
 		//TODO Login og spilstart (disign) + Liste med players og IP
 		//TODO Queue
+        //TODO Check loveligt moves her
 
     	//when dequeue
 		//for each ST
 		//push
-    	
-    	
 
-        
-        
+
+
+
+
        }
 	public static void broadcast(String s) throws IOException {
 		for (ServerThread st : mahThreads) {
@@ -48,9 +84,11 @@ public class Server {
 		}
 	}
 
-	public static boolean login(String s) {
-    	return true;
-	}
+	public static boolean checkMove(int x, int y, String dir) {
+        return true;
+    }
+
+
 
 	public static void requestGameStart() {
     	for (ServerThread st : mahThreads) {
@@ -65,6 +103,17 @@ public class Server {
 		System.out.println("Game started");
 		gameon = true;
 	}
+
+    public Player getPlayerAt(int x, int y) {
+        for (Player p : players) {
+            if (p.getXpos()==x && p.getYpos()==y) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+
 
     
 }

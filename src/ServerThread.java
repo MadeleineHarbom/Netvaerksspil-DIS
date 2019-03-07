@@ -65,6 +65,7 @@ public class ServerThread extends Thread {
 		}
 		else {
 			System.out.println(message);
+			//Laeg kaldet i koe
 		}
 	}
 
