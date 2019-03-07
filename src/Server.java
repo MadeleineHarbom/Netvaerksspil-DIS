@@ -11,6 +11,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Server {
 	static ArrayList<ServerThread> mahThreads = new ArrayList<>();
@@ -18,6 +19,7 @@ public class Server {
 	static boolean gameon = false;
 	static ServerThread[] queue = new ServerThread[10000];
 	static int counter = 0;
+    Random r = new Random();
 
     private  String[] board = {    // 20x20
             "wwwwwwwwwwwwwwwwwwww",
@@ -90,6 +92,7 @@ public class Server {
 		//TODO Login og spilstart (disign) + Liste med players og IP
 		//TODO Queue
         //TODO Check loveligt moves her
+        //TODO Randomize placement
 
     	//when dequeue
 		//for each ST
@@ -119,8 +122,7 @@ public class Server {
 			catch (IOException e) {
 				System.out.println("IO Excetion whne broadvcasting updated characters");
 			}
-			//me.addPoints(10);s
-			//p.addPoints(-10);
+			
 		}
 		else {
 			mover.addPoints(1);
@@ -164,16 +166,54 @@ public class Server {
         return null;
     }
 
-    public void createPlayer(String s) {
-    	String[] info = s.split(" "); //Virker? Skal splitte paa space
+    public void createPlayer(String s, int x, int y, String dir) {
+
 		try {
-			Player p = new Player(info[0], Integer.parseInt(info[1]), Integer.parseInt(info[2]), info[3]);
+			Player p = new Player(s, x, y, dir);
 			players.add(p);
 		}
 		catch (Exception e) {
 			System.out.println("Character creation failed");
 		}
 	}
+
+	public void randomizeStartPlacement(String s) {
+        int x;
+        int y;
+        boolean searching = true;
+        while (searching) {
+            x = r.nextInt((19 - 0) + 1);
+            y = r.nextInt((19 - 0) + 1);
+            if (board[y].charAt(x)=='w') {
+                continue;
+            }
+            else {
+                Player p = getPlayerAt(x,y);
+                if (p == null) {
+                    String dir = "";
+                    int d = r.nextInt((3 - 0) + 1);
+                    if (d == 0) {
+                        dir = "up";
+                    }
+                    else if (d==1) {
+                        dir = "down";
+                    }
+                    else if (d==2) {
+                        dir = "right";
+                    }
+                    else {
+                        dir = "left";
+                    }
+                    createPlayer(s, x, y, dir);
+
+                    searching = false;
+                }
+
+            }
+        }
+
+
+    }
 
 
 

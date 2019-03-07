@@ -6,6 +6,7 @@ import java.io.IOException;
 public class RecieveThread extends Thread {
 
     private BufferedReader sender;
+    String s;
 
 
 
@@ -17,14 +18,19 @@ public class RecieveThread extends Thread {
     public void run() {
         while (true) {
             try {
-                String s = sender.readLine();
-                System.out.println("RecieveThread: "  + s);
+                s = sender.readLine();
+                System.out.println("charinit"  + s);
+                Main.decodeAndExecute(s);
             }
             catch (IOException e) {
                 System.out.println("IO exception");
             }
 
         }
+    }
+
+    public String getMsg() {
+        return s;
     }
 
 

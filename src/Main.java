@@ -244,6 +244,49 @@ public class Main extends Application {
 
 	}
 
+	public static void decodeAndExecute(String s) {
+		if (s.startsWith("charinit")) {
+			String[] stringarray = s.split(" ");
+			String name = stringarray[1];
+			String dir = stringarray[4];
+			int x;
+			int y;
+			try {
+				x = Integer.parseInt(stringarray[2]);
+				y = Integer.parseInt(stringarray[3]);
+			}
+			catch (Exception e) {
+				System.out.println("Parse exception Main character creation");
+				x = 0; // for compiler
+				y = 0; // for compiler
+			}
+			Player p = new Player(name, x, y, dir);
+			players.add(p);
+		}
+	}
+
+	public void createPlayer(String s) {
+		String[] sa = s.split(" ");
+		String name = sa[0];
+		int x;
+		int y;
+		try {
+			x = Integer.parseInt(sa[1]);
+			y = Integer.parseInt(sa[2]);
+		}
+		catch (Exception e) {
+			System.out.println("Parse issues in Main");
+			x = 0;//til compler
+			y= 0; //Til compiler
+		}
+		String dir = sa[3];
+		if (!(name.equals(me.getName()))) {
+			Player p = new Player(name, x, y, dir);
+			players.add(p);
+
+		}
+	}
+
 
 	//TODO Genskriv alle createHero metoder
 
