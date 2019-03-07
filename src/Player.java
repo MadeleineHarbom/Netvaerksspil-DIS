@@ -47,4 +47,12 @@ public class Player {
 	public String getPosition() {
 		return "" + name + " " + xpos + " " + ypos + " " + direction;
 	}
+
+	public String getAllInfo() {
+		return "" + name + " " + xpos + " " + ypos + " " + direction + " " + point;
+	}
+
+	public void updatePlayer(String s) {
+
+	}
 }

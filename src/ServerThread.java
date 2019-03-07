@@ -16,6 +16,7 @@ public class ServerThread extends Thread {
 	RecieveThread reciever;
 	DataOutputStream pusher;
 	boolean ready = false;
+	static String message;
 
 
 	public ServerThread(Socket socket, ArrayList<Player> players) {
@@ -40,7 +41,7 @@ public class ServerThread extends Thread {
 			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
 			while (true) {
-				String message = inFromClient.readLine();
+				message = inFromClient.readLine();
 				Server.broadcast(message);
 				decode(message);
 			}
@@ -58,7 +59,7 @@ public class ServerThread extends Thread {
 		this.pusher.writeBytes(s + "\n");
 	}
 
-	public void decode(String message) {
+	public void decode(String message) throws IOException{
 		if (message.toLowerCase().equals("ready")) {
 			this.ready = true;
 			Server.requestGameStart();
@@ -67,6 +68,10 @@ public class ServerThread extends Thread {
 			System.out.println(message);
 			//Laeg kaldet i koe
 		}
+	}
+
+	public static String getString() {
+		return message;
 	}
 
 }
