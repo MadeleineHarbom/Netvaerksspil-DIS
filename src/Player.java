@@ -1,4 +1,4 @@
-package src;
+package game2019;
 
 public class Player {
 	String name;
@@ -13,6 +13,10 @@ public class Player {
 		this.ypos = ypos;
 		this.direction = direction;
 		this.point = 0;
+	}
+	//tilføjet
+	public String getName() {
+		return name;
 	}
 
 	public int getXpos() {
@@ -39,8 +43,8 @@ public class Player {
 	public String toString() {
 		return name+":   "+point;
 	}
-
+	
 	public String getPosition() {
-		return name + " " + xpos + " " + ypos + " " + direction;
+		return "" + name + " " + xpos + " " + ypos + " " + direction;
 	}
 }

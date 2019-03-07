@@ -26,9 +26,14 @@ public class SendThread extends Thread {
 				System.out.println(me.getPosition());
 				message = me.getPosition();
 				messageOut.writeBytes(message + '\n');
+				messageOut.flush();
 				System.out.println("besked sendt");
+				Thread.sleep(100);
 			} catch (IOException e) {
 				System.out.println("Error occured in ThreadSender");
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
