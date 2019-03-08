@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class InfoScreen extends Stage  {
+    TextField txfName;
+
     public InfoScreen(String title) {
     	 initStyle(StageStyle.UTILITY);
          setMinHeight(100);
@@ -33,7 +35,7 @@ public class InfoScreen extends Stage  {
         Label lblIPAddress = new Label("IPv4 Adrdress:");
         pane.add(lblIPAddress, 0, 1);
         
-        TextField txfName = new TextField();
+        txfName = new TextField();
         pane.add(txfName, 1, 0);
         
         TextField txfIPAddress = new TextField();
@@ -45,9 +47,13 @@ public class InfoScreen extends Stage  {
         
     }
 
-		private void okayAction() {
-			hide();
-		}
+
+    private void okayAction() {
+        String[] s = txfName.getText().split(" ");
+        Main.name = s[0];
+        System.out.println("From InfoScreen: " + s[0]);
+        hide();
+    }
     
          
        

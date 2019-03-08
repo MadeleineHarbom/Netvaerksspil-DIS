@@ -1,23 +1,17 @@
 package src;
 
 
-import javax.imageio.event.IIOWriteProgressListener;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class Server {
-	static ArrayList<ServerThread> mahThreads = new ArrayList<>();
+	static ArrayList<ConnectionToClientThread> mahThreads = new ArrayList<>();
 	static ArrayList<Player> players = new ArrayList<>(); //lave eventuelt til hashmap
 	static boolean gameon = false;
-	static ServerThread[] queue = new ServerThread[10000];
+	static ConnectionToClientThread[] queue = new ConnectionToClientThread[10000];
 	static int counter = 0;
     Random r = new Random();
     static ArrayList<String> names = new ArrayList<>();
@@ -59,9 +53,11 @@ public class Server {
     	while (!gameon) { //When size == readycounter
     		//accepterer en client når den forsøger at forbinde, og starter en serverSocketTraad
 			Socket sock = serverSocket.accept();
-    		ServerThread st = new ServerThread(sock);
+
+    		ConnectionToClientThread st = new ConnectionToClientThread(sock);
     		st.start();
     		mahThreads.add(st);
+    		//get the name. How? Skal Server ha en getMessage metode?
     	}
 
     	while (gameon) {
@@ -106,7 +102,7 @@ public class Server {
 
        }
 	public static void broadcast(String s) throws IOException {
-		for (ServerThread st : mahThreads) {
+		for (ConnectionToClientThread st : mahThreads) {
 			st.sendMsg(s);
 		}
 	}
@@ -142,7 +138,7 @@ public class Server {
 
 
 	public static void requestGameStart() throws IOException{
-    	for (ServerThread st : mahThreads) {
+    	for (ConnectionToClientThread st : mahThreads) {
     		if (!st.ready) {
     			return;
 			}

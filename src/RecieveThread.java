@@ -19,7 +19,6 @@ public class RecieveThread extends Thread {
         while (true) {
             try {
                 s = sender.readLine();
-                System.out.println("charinit"  + s);
                 Main.decodeAndExecute(s);
             }
             catch (IOException e) {

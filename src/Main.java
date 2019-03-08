@@ -33,6 +33,7 @@ public class Main extends Application {
 	public static final int size = 20; 
 	public static final int scene_height = size * 20 + 100;
 	public static final int scene_width = size * 20 + 200;
+	public static String name;
 	
 
 	public static Image image_floor;
@@ -80,6 +81,13 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		infoScreen = new InfoScreen("Indtast oplysninger");
 		infoScreen.showAndWait();
+
+		try {
+			connectToServer();
+		}
+		catch (Exception e) {
+			System.out.println("cant connect to server");
+		}
 		try {
 			GridPane grid = new GridPane();
 			grid.setHgap(10);
@@ -221,7 +229,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) throws Exception {
-		connectToServer();
+		//connectToServer();
 		launch(args);
 	}
 
@@ -244,6 +252,7 @@ public class Main extends Application {
 		sender.start();
 		reciever.start();
 
+
 	}
 
 	public static void decodeAndExecute(String s) {
@@ -264,6 +273,19 @@ public class Main extends Application {
 			}
 			Player p = new Player(name, x, y, dir);
 			players.add(p);
+		}
+		else if (s.startsWith("gifv_name")){
+			System.out.println("Client: name request received");
+			try{
+				System.out.println(name);
+				outToServer.writeBytes("name " + name + '\n');
+				System.out.println("Client: Name sent");
+				outToServer.flush(); //Hmmm
+			}
+			catch (Exception e){
+				System.out.println("Client: Couldnt send message");
+			}
+
 		}
 	}
 

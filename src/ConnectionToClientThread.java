@@ -4,34 +4,36 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class ServerThread extends Thread {
+public class ConnectionToClientThread extends Thread {
 	
 	Socket socket = null;
 	ArrayList<Player> players;
 	SendThread sender;
 	RecieveThread reciever;
-	DataOutputStream pusher;
+	DataOutputStream push2client;
 	boolean ready = false;
 	static String message;
 
 
-	public ServerThread(Socket socket, ArrayList<Player> players) {
+	public ConnectionToClientThread(Socket socket, ArrayList<Player> players) {
 		this.socket = socket;
 	}
 
-	public ServerThread(Socket socket) {
+	public ConnectionToClientThread(Socket socket) {
 		this.socket = socket;
 		try {
 
-		pusher = new DataOutputStream(socket.getOutputStream());
+		push2client = new DataOutputStream(socket.getOutputStream());
+		sendMsg("gifv_name");
+			System.out.println("C2C: Name requested");
 		}
 		catch (Exception e) {
 
 		}
+
 	}
 	
 	
@@ -39,6 +41,8 @@ public class ServerThread extends Thread {
 		try {
 
 			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+
 
 			while (true) {
 				message = inFromClient.readLine();
@@ -56,13 +60,19 @@ public class ServerThread extends Thread {
 	}
 
 	public void sendMsg(String s) throws IOException {
-		this.pusher.writeBytes(s + "\n");
+		this.push2client.writeBytes(s + "\n"); //sender til clienten?
 	}
 
 	public void decode(String message) throws IOException{
+		System.out.println("in decode method");
 		if (message.toLowerCase().equals("ready")) {
 			this.ready = true;
 			Server.requestGameStart();
+		}
+		else if (message.toLowerCase().startsWith("name")){
+			System.out.println("From server after name reveived: " + message);
+			String[] sa = message.split(" ");
+			//Send to server
 		}
 		else {
 			System.out.println(message);
