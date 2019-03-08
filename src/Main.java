@@ -44,6 +44,7 @@ public class Main extends Application {
 
 	private Label[][] fields;
 	private TextArea scoreList;
+	private InfoScreen infoScreen;
 	
 	private  String[] board = {    // 20x20
 			"wwwwwwwwwwwwwwwwwwww",
@@ -77,7 +78,8 @@ public class Main extends Application {
 	// -------------------------------------------
 	@Override
 	public void start(Stage primaryStage) {
-		
+		infoScreen = new InfoScreen("Indtast oplysninger");
+		infoScreen.showAndWait();
 		try {
 			GridPane grid = new GridPane();
 			grid.setHgap(10);
