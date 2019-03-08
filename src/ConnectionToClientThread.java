@@ -72,8 +72,11 @@ public class ConnectionToClientThread extends Thread {
 		else if (message.toLowerCase().startsWith("name")){
 			System.out.println("From server after name reveived: " + message);
 			String[] sa = message.split(" ");
-			//Send to server
+			Server.names.add(sa[0]); //Send to server
 		}
+		else if (message.toLowerCase().equals(ready)) {
+		    ready = true;
+        }
 		else {
 			System.out.println(message);
 			//Laeg kaldet i koe

@@ -255,6 +255,12 @@ public class Main extends Application {
 
 	}
 
+	public static void readyCheck() {
+        Alert ready = new Alert(Alert.AlertType.INFORMATION);
+        ready.setContentText("Are you reeeeaaaady?");
+        ready.showAndWait();
+    }
+
 	public static void decodeAndExecute(String s) {
 		if (s.startsWith("charinit")) {
 			String[] stringarray = s.split(" ");
