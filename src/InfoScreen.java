@@ -1,144 +1,55 @@
 package src;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-public class InfoScreen extends Application {
-    private static String ip = "";
-    private static  String name = "";
-    public static void main(String[] args) {
-        Application.launch(args);
+public class InfoScreen extends Stage  {
+    public InfoScreen(String title) {
+    	 initStyle(StageStyle.UTILITY);
+         setMinHeight(100);
+         setMinWidth(200);
+         setResizable(false);
+         setTitle(title);
+         GridPane pane = new GridPane();
+         initContent(pane);
+         Scene scene = new Scene(pane);
+         setScene(scene);
+    }
+ 
+        public void initContent(GridPane pane) {
+        pane.setHgap(10);
+        pane.setVgap(10);
+        pane.setPadding(new Insets(20));
+
+        Label lblName = new Label("Navn:");
+        pane.add(lblName, 0, 0);
+        
+        Label lblIPAddress = new Label("IPv4 Adrdress:");
+        pane.add(lblIPAddress, 0, 1);
+        
+        TextField txfName = new TextField();
+        pane.add(txfName, 1, 0);
+        
+        TextField txfIPAddress = new TextField();
+        pane.add(txfIPAddress, 1, 1);
+        
+        Button btnOkay = new Button("Okay");
+        pane.add(btnOkay, 1, 2);
+        btnOkay.setOnAction(event -> this.okayAction());
+        
     }
 
-    @Override
-    public void start(Stage stage) {
-        stage.setTitle("App");
-        BorderPane pane = new BorderPane();
-        initContent(pane);
-
-        Scene scene = new Scene(pane);
-        stage.setScene(scene);
-        stage.setMinHeight(160);
-        stage.setMinWidth(330);
-        stage.show();
-
-    }
-
-    public static String getName() {
-        return name;
-    }
-
-    public static String getIp() {
-        return ip;
-    }
-
-    private void initContent(BorderPane pane) {
-        GridPane gridPane = new GridPane();
-        initGridPane(gridPane);
-        pane.setCenter(gridPane);
-        pane.setPadding(new Insets(10));
-
-
-    }
-
-
-    Label lblNavn, lblIP, lblY, lblX, lblDir;
-    Button btnCreate;
-    TextField txfNavn, txfIP, txfX, txfY, txfDir;
-    ToggleGroup dir;
-    int listInt = 200;
-
-
-
-    private void initGridPane(GridPane gridPane) {
-        gridPane.setAlignment(Pos.CENTER);
-        gridPane.setHgap(20);
-        gridPane.setVgap(10);
-        gridPane.setGridLinesVisible(false);
-
-
-
-        lblNavn = new Label("Navn");
-        gridPane.add(lblNavn, 0, 1);
-
-
-
-        txfNavn = new TextField();
-        txfNavn.setEditable(true);
-        gridPane.add(txfNavn,1,1);
-
-    }
-
-
-    public void createAction () {
-        class OpretPopUp extends Stage {
-            private Button btnClose;
-            private GridPane gridPane = new GridPane();
-
-
-            public OpretPopUp() {
-                Scene scene = new Scene(gridPane);
-                this.setScene(scene);
-                initPopPane(gridPane);
-            }
-
-            private void initPopPane(GridPane gridPane) {
-                gridPane.setAlignment(Pos.CENTER);
-                gridPane.setHgap(20);
-                gridPane.setVgap(10);
-                gridPane.setGridLinesVisible(false);
-
-
-                lblNavn = new Label("Navn");
-                gridPane.add(lblNavn, 0, 0);
-
-
-
-
-
-
-                btnClose = new Button("Cancel");
-                //btnClose.setOnAction(event -> closeAction());
-                gridPane.add(btnClose, 2, 3);
-
-
-            }
-
-
-
-        }
-
-        //Navn
-        String name = txfNavn.getText().trim();
-        if (!(name.length() > 0)) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Ugyldigt navn");
-            a.showAndWait();
-        }
-
-        //IP
-        String ip = txfIP.getText().trim();
-        //maaske et bedre IP check
-        if (!(ip.length() > 6)) {
-            Alert b = new Alert(Alert.AlertType.ERROR);
-            b.setContentText("For kort IP");
-            b.showAndWait();
-        }
-
-
-
-        OpretPopUp popup = new OpretPopUp();
-        popup.showAndWait();
-
-    }
-
-
-
+		private void okayAction() {
+			hide();
+		}
+    
+         
+       
 
 }
