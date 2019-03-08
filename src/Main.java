@@ -288,7 +288,5 @@ public class Main extends Application {
 	}
 
 
-	//TODO Genskriv alle createHero metoder
-
 }
 

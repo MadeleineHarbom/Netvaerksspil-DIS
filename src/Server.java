@@ -20,6 +20,7 @@ public class Server {
 	static ServerThread[] queue = new ServerThread[10000];
 	static int counter = 0;
     Random r = new Random();
+    static ArrayList<String> names = new ArrayList<>();
 
     private  String[] board = {    // 20x20
             "wwwwwwwwwwwwwwwwwwww",
@@ -66,6 +67,7 @@ public class Server {
     	while (gameon) {
     	    if (queue[counter] != null) {
 				String[] s = queue[counter].getString().split(" ");
+				//kan jeg dette3 uden at starte traaden?
 				Player mover = null;
 				for (Player p : players) {
 					if (p.getName().equals(s[0])) {
@@ -89,10 +91,10 @@ public class Server {
             }
         }
 
-		//TODO Login og spilstart (disign) + Liste med players og IP
+		//TODO Liste med players og IP
 		//TODO Queue
-        //TODO Check loveligt moves her
-        //TODO Randomize placement
+
+
 
     	//when dequeue
 		//for each ST
@@ -122,7 +124,7 @@ public class Server {
 			catch (IOException e) {
 				System.out.println("IO Excetion whne broadvcasting updated characters");
 			}
-			
+
 		}
 		else {
 			mover.addPoints(1);
