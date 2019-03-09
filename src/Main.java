@@ -75,15 +75,27 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		infoScreen = new InfoScreen("Indtast oplysninger");
 		infoScreen.showAndWait();
+        try {
+            connectToServer();
+        }
+        catch (Exception e) {
+            System.out.println("cant connect to server");
+        }
+        System.out.println(name);
+
+        try {
+            outToServer.writeBytes("name " + name + '\n');
+            System.out.println("Client: Name sent");
+            outToServer.flush(); //Hmmm
+        }
+        catch (Exception e) {
+            System.out.println("main failed to send name");
+        }
+
 		readyCheck();
 
 
-		try {
-			connectToServer();
-		}
-		catch (Exception e) {
-			System.out.println("cant connect to server");
-		}
+
 		try {
 			GridPane grid = new GridPane();
 			grid.setHgap(10);
@@ -284,19 +296,19 @@ public class Main extends Application {
 			players.add(p);
             System.out.println("character created");
 		}
-		else if (s.startsWith("gifv_name")){
-			System.out.println("Client: name request received");
-			try{
-				System.out.println(name);
-				outToServer.writeBytes("name " + name + '\n');
-				System.out.println("Client: Name sent");
-				outToServer.flush(); //Hmmm
-			}
-			catch (Exception e){
-				System.out.println("Client: Couldnt send message");
-			}
-
-		}
+//		else if (s.startsWith("gifv_name")){
+//			System.out.println("Client: name request received");
+//			try{
+//				System.out.println(name);
+//				outToServer.writeBytes("name " + name + '\n');
+//				System.out.println("Client: Name sent");
+//				outToServer.flush(); //Hmmm
+//			}
+//			catch (Exception e){
+//				System.out.println("Client: Couldnt send message");
+//			}
+//
+//		}
 	}
 
 	public void createPlayer(String s) {
