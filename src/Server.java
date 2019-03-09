@@ -13,10 +13,10 @@ public class Server {
 	static boolean gameon = false;
 	static ConnectionToClientThread[] queue = new ConnectionToClientThread[10000];
 	static int counter = 0;
-    Random r = new Random();
+
     static ArrayList<String> names = new ArrayList<>();
 
-    private  String[] board = {    // 20x20
+    private static  String[] board = {    // 20x20
             "wwwwwwwwwwwwwwwwwwww",
             "w        ww        w",
             "w w  w  www w  w  ww",
@@ -45,8 +45,6 @@ public class Server {
     	int portNumber = 7777;
     	ServerSocket serverSocket = new ServerSocket(portNumber);
 
-
-
     	int size = 0;
 
 
@@ -59,6 +57,10 @@ public class Server {
     		mahThreads.add(st);
     		//get the name. How? Skal Server ha en getMessage metode?
     	}
+
+    	for(Player p : players) {
+    		broadcast("charinit " + p.getDirection());
+		}
 
     	while (gameon) {
     	    if (queue[counter] != null) {
@@ -87,15 +89,8 @@ public class Server {
             }
         }
 
-		//TODO Liste med players og IP
+
 		//TODO Queue
-
-
-
-    	//when dequeue
-		//for each ST
-		//push
-
 
 
 
@@ -164,7 +159,7 @@ public class Server {
         return null;
     }
 
-    public void createPlayer(String s, int x, int y, String dir) {
+    public static void createPlayer(String s, int x, int y, String dir) {
 
 		try {
 			Player p = new Player(s, x, y, dir);
@@ -175,10 +170,11 @@ public class Server {
 		}
 	}
 
-	public void randomizeStartPlacement(String s) {
+	public static void createRandomizedCharacter(String s) {
         int x;
         int y;
         boolean searching = true;
+		Random r = new Random();
         while (searching) {
             x = r.nextInt((19 - 0) + 1);
             y = r.nextInt((19 - 0) + 1);

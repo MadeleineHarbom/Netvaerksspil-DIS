@@ -64,15 +64,16 @@ public class ConnectionToClientThread extends Thread {
 	}
 
 	public void decode(String message) throws IOException{
-		System.out.println("in decode method");
-		if (message.toLowerCase().equals("ready")) {
+
+		if (message.toLowerCase().startsWith("ready")) {
 			this.ready = true;
 			Server.requestGameStart();
 		}
 		else if (message.toLowerCase().startsWith("name")){
-			System.out.println("From server after name reveived: " + message);
+			System.out.println("From C2C after name reveived: " + message);
 			String[] sa = message.split(" ");
-			Server.names.add(sa[0]); //Send to server
+			Server.names.add(sa[1]); //Send to server
+            Server.createRandomizedCharacter(sa[1]);
 		}
 		else if (message.toLowerCase().equals(ready)) {
 		    ready = true;

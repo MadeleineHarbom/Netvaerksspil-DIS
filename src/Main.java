@@ -25,16 +25,10 @@ public class Main extends Application {
 	static Socket clientSocket;
 	static DataOutputStream outToServer;
 
-
-
-
-
-
 	public static final int size = 20; 
 	public static final int scene_height = size * 20 + 100;
 	public static final int scene_width = size * 20 + 200;
 	public static String name;
-	
 
 	public static Image image_floor;
 	public static Image image_wall;
@@ -81,6 +75,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		infoScreen = new InfoScreen("Indtast oplysninger");
 		infoScreen.showAndWait();
+		readyCheck();
+
 
 		try {
 			connectToServer();
@@ -259,6 +255,13 @@ public class Main extends Application {
         Alert ready = new Alert(Alert.AlertType.INFORMATION);
         ready.setContentText("Are you reeeeaaaady?");
         ready.showAndWait();
+        try {
+            outToServer.writeBytes("ready" + '\n');
+        }
+        catch (Exception e) {
+            System.out.println("IO exception in readycheck in main");
+        }
+
     }
 
 	public static void decodeAndExecute(String s) {
@@ -279,6 +282,7 @@ public class Main extends Application {
 			}
 			Player p = new Player(name, x, y, dir);
 			players.add(p);
+            System.out.println("character created");
 		}
 		else if (s.startsWith("gifv_name")){
 			System.out.println("Client: name request received");
