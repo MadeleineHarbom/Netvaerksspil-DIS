@@ -28,7 +28,7 @@ public class Main extends Application {
 	public static final int size = 20; 
 	public static final int scene_height = size * 20 + 100;
 	public static final int scene_width = size * 20 + 200;
-	public static String name;
+	public static String playername;
 
 	public static Image image_floor;
 	public static Image image_wall;
@@ -81,10 +81,10 @@ public class Main extends Application {
         catch (Exception e) {
             System.out.println("cant connect to server");
         }
-        System.out.println(name);
+        System.out.println(playername);
 
         try {
-            outToServer.writeBytes("name " + name + '\n');
+            outToServer.writeBytes("name " + playername + '\n');
             System.out.println("Client: Name sent");
             outToServer.flush(); //Hmmm
         }
@@ -271,7 +271,7 @@ public class Main extends Application {
             outToServer.writeBytes("ready" + '\n');
         }
         catch (Exception e) {
-            System.out.println("IO exception in readycheck in main");
+            System.out.println("IO exception in readycheck in main"); //bug when multiple
         }
 
     }
@@ -279,6 +279,9 @@ public class Main extends Application {
 	public static void decodeAndExecute(String s) {
 		if (s.startsWith("charinit")) {
 			String[] stringarray = s.split(" ");
+            for (String str : stringarray) {
+                System.out.println(str);
+            }
 			String name = stringarray[1];
 			String dir = stringarray[4];
 			int x;
@@ -292,23 +295,19 @@ public class Main extends Application {
 				x = 0; // for compiler
 				y = 0; // for compiler
 			}
-			Player p = new Player(name, x, y, dir);
-			players.add(p);
-            System.out.println("character created");
+            Player p = new Player(name, x, y, dir);
+			if (Main.playername.equalsIgnoreCase(name))  {
+			    me = p;
+                System.out.println("Hero created");
+            }
+            else {
+                players.add(p);
+                System.out.println("character created");
+            }
+
+
 		}
-//		else if (s.startsWith("gifv_name")){
-//			System.out.println("Client: name request received");
-//			try{
-//				System.out.println(name);
-//				outToServer.writeBytes("name " + name + '\n');
-//				System.out.println("Client: Name sent");
-//				outToServer.flush(); //Hmmm
-//			}
-//			catch (Exception e){
-//				System.out.println("Client: Couldnt send message");
-//			}
-//
-//		}
+
 	}
 
 	public void createPlayer(String s) {

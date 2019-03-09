@@ -146,7 +146,7 @@ public class Server {
 		System.out.println("Game started");
 		//TODO pushe alle characters til brugerne
 		for (Player p : players) {
-			broadcast("charinit " + p.toString());
+			broadcast("charinit " + p.getPosition());
             System.out.println("Player pushed");
 		}
 		gameon = true;

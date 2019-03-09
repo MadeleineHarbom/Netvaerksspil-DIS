@@ -50,7 +50,7 @@ public class InfoScreen extends Stage  {
 
     private void okayAction() {
         String[] s = txfName.getText().split(" ");
-        Main.name = s[0];
+        Main.playername = s[0];
         System.out.println("From InfoScreen: " + s[0]);
         hide();
     }
