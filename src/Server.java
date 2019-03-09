@@ -60,6 +60,7 @@ public class Server {
 
     	for(Player p : players) {
     		broadcast("charinit " + p.getDirection());
+            System.out.println("char init braodcasted");
 		}
 
     	while (gameon) {
@@ -145,7 +146,8 @@ public class Server {
 		System.out.println("Game started");
 		//TODO pushe alle characters til brugerne
 		for (Player p : players) {
-			broadcast(p.toString());
+			broadcast("charinit " + p.toString());
+            System.out.println("Player pushed");
 		}
 		gameon = true;
 	}
