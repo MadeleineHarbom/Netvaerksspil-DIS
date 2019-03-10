@@ -221,6 +221,7 @@ public class Main extends Application {
 
 	public String getScoreList() {
 		StringBuffer b = new StringBuffer(100);
+		b.append(me + "\r\n");
 		for (Player p : players) {
 			b.append(p+"\r\n");
 		}
@@ -242,22 +243,17 @@ public class Main extends Application {
 	}
 
 	public static void connectToServer() throws Exception{
-		
-		me = new Player("Orville",9,4,"up");
-		players.add(me);
-		
-		Player harry = new Player("Harry",14,15,"up");
-		players.add(harry);
+
 		
 		clientSocket = new Socket(ip, port); //(serverIP, port serveren lytter paa)
 		outToServer = new DataOutputStream(clientSocket.getOutputStream());
 
 		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-		SendThread sender = new SendThread(me, outToServer);
+		//SendThread sender = new SendThread(me, outToServer);
 		RecieveThread reciever = new RecieveThread(inFromServer);
 
-		sender.start();
+		//sender.start();
 		reciever.start();
 
 
