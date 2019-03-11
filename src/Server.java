@@ -111,7 +111,7 @@ public class Server {
 			mover.addPoints(10);
 			try {
 				broadcast(p.getAllInfo());
-				broadcast(mover.getAllInfo());
+				broadcast("move " + mover.getAllInfo());
 			}
 			catch (IOException e) {
 				System.out.println("IO Excetion whne broadvcasting updated characters");
@@ -121,7 +121,7 @@ public class Server {
 		else {
 			mover.addPoints(1);
 			try {
-				broadcast(mover.getAllInfo());
+				broadcast("move " + mover.getAllInfo());
 			}
 			catch (IOException e) {
 				System.out.println("IO Excetion whne broadvcasting updated characters");
