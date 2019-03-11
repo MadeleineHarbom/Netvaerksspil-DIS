@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bbe48cf5-3f5d-4209-bb8f-4517de9108d3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ConnectionToClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConnectionToClientThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +26,8 @@
           <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Server.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="268">
-                  <caret line="170" column="27" lean-forward="true" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="70" />
+                <state relative-caret-position="185">
+                  <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -38,25 +38,50 @@
           <file leaf-file-name="RecieveThread.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/RecieveThread.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="12" lean-forward="true" selection-start-column="12" selection-end-column="12" />
+                <state relative-caret-position="405">
+                  <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
                   <folding>
                     <element signature="e#217#218#0" expanded="true" />
                     <element signature="e#249#250#0" expanded="true" />
+                    <element signature="e#559#560#0" expanded="true" />
+                    <element signature="e#583#584#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ConnectionToClientThread.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ConnectionToClientThread.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/ConnectionToClientThread.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-383">
-                  <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+                <state relative-caret-position="615">
+                  <caret line="48" column="28" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="28" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#1990#1991#0" expanded="true" />
-                    <element signature="e#2011#2012#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/Main.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="359">
+                  <caret line="396" column="29" selection-start-line="396" selection-start-column="29" selection-end-line="396" selection-end-column="29" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#1075#1083#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SendThread.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/SendThread.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="300">
+                  <caret line="22" selection-start-line="22" selection-end-line="22" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -65,19 +90,13 @@
           <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Player.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Main.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="258">
-                  <caret line="260" column="28" selection-start-line="260" selection-start-column="28" selection-end-line="260" selection-end-column="28" />
+                <state relative-caret-position="420">
+                  <caret line="46" column="31" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
                   <folding>
-                    <element signature="imports" expanded="true" />
+                    <element signature="e#808#809#0" expanded="true" />
+                    <element signature="e#875#876#0" expanded="true" />
+                    <element signature="e#906#907#0" expanded="true" />
+                    <element signature="e#987#988#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -90,8 +109,8 @@
           <file leaf-file-name="InfoScreen.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/InfoScreen.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="202">
-                  <caret line="43" column="44" lean-forward="true" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
+                <state relative-caret-position="330">
+                  <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -118,9 +137,16 @@
       <find>sendMsg</find>
       <find>getPlay</find>
       <find>checkM</find>
-      <find>send</find>
       <find>name re</find>
       <find>dec</find>
+      <find>game st</find>
+      <find>ready</find>
+      <find>game s</find>
+      <find>send</find>
+      <find>getSc</find>
+      <find>decode</find>
+      <find>broad</find>
+      <find>move</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -131,12 +157,12 @@
       <list>
         <option value="$PROJECT_DIR$/src/SendThread.java" />
         <option value="$PROJECT_DIR$/src/Player.java" />
-        <option value="$PROJECT_DIR$/src/Server.java" />
         <option value="$PROJECT_DIR$/src/RecieveThread.java" />
         <option value="$PROJECT_DIR$/src/ServerThread.java" />
         <option value="$PROJECT_DIR$/src/InfoScreen.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/ConnectionToClientThread.java" />
+        <option value="$PROJECT_DIR$/src/Server.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -159,8 +185,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -179,11 +204,18 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="tst" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Netvaerksspil-DIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Netvaerksspil-DIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="1a9f42e2:ClassTreeNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -304,7 +336,9 @@
       <workItem from="1552034371220" duration="1939000" />
       <workItem from="1552073919762" duration="2199000" />
       <workItem from="1552076374091" duration="446000" />
-      <workItem from="1552076879931" duration="5682000" />
+      <workItem from="1552076879931" duration="10727000" />
+      <workItem from="1552212411667" duration="5538000" />
+      <workItem from="1552311865072" duration="2257000" />
     </task>
     <task id="LOCAL-00001" summary="Made changes stuff :S God save us all">
       <created>1551780898316</created>
@@ -390,11 +424,60 @@
       <option name="project" value="LOCAL" />
       <updated>1552082677789</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Names sending, console">
+      <created>1552085005844</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1552085005844</updated>
+    </task>
+    <task id="LOCAL-00014" summary="ready check virker ikke, sender navn istedet for &quot;ready&quot;">
+      <created>1552123631337</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1552123631337</updated>
+    </task>
+    <task id="LOCAL-00015" summary="ready check virker">
+      <created>1552126051155</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1552126051155</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Characters created and broadcasted">
+      <created>1552133876269</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1552133876270</updated>
+    </task>
+    <task id="LOCAL-00017" summary="ZOMG, jk. Nu virker char creation og hero creation :)">
+      <created>1552134684872</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1552134684872</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Scoreboard opdaterer">
+      <created>1552212852717</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1552212852717</updated>
+    </task>
+    <task id="LOCAL-00019" summary="I like to move it move it">
+      <created>1552303804809</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1552303804809</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41268000" />
+    <option name="totallyTimeSpent" value="54108000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
@@ -409,58 +492,27 @@
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3451613" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32903227" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3451613" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17460318" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17643468" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39892474" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39892474" />
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32967034" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32903227" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32903227" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32967034" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3451613" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.17460318" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39892474" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32903227" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32903227" />
-      <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -481,11 +533,18 @@
     <MESSAGE value="Code equivalent of The Ring &gt;&lt;" />
     <MESSAGE value="Slettede TODOs" />
     <MESSAGE value="Names sending, console" />
-    <option name="LAST_COMMIT_MESSAGE" value="Names sending, console" />
+    <MESSAGE value="ready check virker ikke, sender navn i" />
+    <MESSAGE value="ready check virker ikke, sender navn istedet for &quot;ready&quot;" />
+    <MESSAGE value="ready check virker" />
+    <MESSAGE value="Characters created and broadcasted" />
+    <MESSAGE value="ZOMG, jk. Nu virker char creation og hero creation :)" />
+    <MESSAGE value="Scoreboard opdaterer" />
+    <MESSAGE value="I like to move it move it" />
+    <option name="LAST_COMMIT_MESSAGE" value="I like to move it move it" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="11" />
+      <option name="time" value="14" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -769,16 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SendThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="38" lean-forward="true" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tst/LoginWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -811,21 +860,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SendThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/RecieveThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" lean-forward="true" selection-start-column="12" selection-end-column="12" />
+        <state relative-caret-position="405">
+          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
           <folding>
             <element signature="e#217#218#0" expanded="true" />
             <element signature="e#249#250#0" expanded="true" />
+            <element signature="e#559#560#0" expanded="true" />
+            <element signature="e#583#584#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="46" column="31" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
+          <folding>
+            <element signature="e#808#809#0" expanded="true" />
+            <element signature="e#875#876#0" expanded="true" />
+            <element signature="e#906#907#0" expanded="true" />
+            <element signature="e#987#988#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ConnectionToClientThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="48" column="28" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/InfoScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="170" column="27" lean-forward="true" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="70" />
+        <state relative-caret-position="185">
+          <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -834,39 +928,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="260" column="28" selection-start-line="260" selection-start-column="28" selection-end-line="260" selection-end-column="28" />
+        <state relative-caret-position="359">
+          <caret line="396" column="29" selection-start-line="396" selection-start-column="29" selection-end-line="396" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/InfoScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="43" column="44" lean-forward="true" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ConnectionToClientThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-383">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1990#1991#0" expanded="true" />
-            <element signature="e#2011#2012#0" expanded="true" />
+            <element signature="e#1075#1083#0" expanded="true" />
           </folding>
         </state>
       </provider>

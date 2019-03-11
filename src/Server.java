@@ -110,7 +110,12 @@ public class Server {
 			p.addPoints(-10);
 			mover.addPoints(10);
 			try {
-				broadcast(p.getAllInfo());
+
+				//broadcast(p.getAllInfo());
+
+				//broadcast(p.getAllInfo());
+				//TODO Lave en sout my msg
+				System.out.println(mover.getAllInfo());
 				broadcast("move " + mover.getAllInfo());
 			}
 			catch (IOException e) {
@@ -120,6 +125,8 @@ public class Server {
 		}
 		else {
 			mover.addPoints(1);
+			mover.setXpos(x);
+			mover.setYpos(y);
 			try {
 				broadcast("move " + mover.getAllInfo());
 			}
