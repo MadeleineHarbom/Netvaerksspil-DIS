@@ -115,7 +115,7 @@ public class Server {
 
 				//broadcast(p.getAllInfo());
 				//TODO Lave en sout my msg
-				System.out.println(mover.getAllInfo());
+				System.out.println("Mover " + mover.getAllInfo());
 				broadcast("move " + mover.getAllInfo());
 			}
 			catch (IOException e) {
@@ -128,6 +128,7 @@ public class Server {
 			mover.setXpos(x);
 			mover.setYpos(y);
 			try {
+				System.out.println("Mover " + mover.getAllInfo());
 				broadcast("move " + mover.getAllInfo());
 			}
 			catch (IOException e) {

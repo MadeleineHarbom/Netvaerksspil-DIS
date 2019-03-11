@@ -37,7 +37,7 @@ public class Main extends Application {
 	public static Player me;
 	public static List<Player> players = new ArrayList<Player>();
 
-	private Label[][] fields;
+	private static Label[][] fields;
 	private TextArea scoreList;
 	private InfoScreen infoScreen;
 	
@@ -63,6 +63,8 @@ public class Main extends Application {
 			"w   w   ww  w      w",
 			"wwwwwwwwwwwwwwwwwwww"
 	};
+	//TODO det andre spiller kan ikke bevaege sig!
+	//TODO update GUI saa att cunsom characters vises direkte, ikke Orville
 
 	
 	// -------------------------------------------
@@ -153,17 +155,20 @@ public class Main extends Application {
 				case DOWN:  playerMoved(0,+1,"down");  break;
 				case LEFT:  playerMoved(-1,0,"left");  break;
 				case RIGHT: playerMoved(+1,0,"right"); break;
+				//send to server?
 				default: break;
 				}
 			});
 			
             // Setting up start positions for standard players located in connecttoserver
-			
-			
-			fields[9][4].setGraphic(new ImageView(hero_up));
+
+			setupPlayers();
+
+
+			//fields[9][4].setGraphic(new ImageView(hero_up));
 
 			
-			fields[14][15].setGraphic(new ImageView(hero_up));
+			//fields[14][15].setGraphic(new ImageView(hero_up));
 
 			scoreList.setText(getScoreList());
 		} catch(Exception e) {
@@ -300,11 +305,15 @@ public class Main extends Application {
                 players.add(p);
                 System.out.println("character created");
             }
+
+
 		}
+
 		else if (s.startsWith("move")){
+			//TODO HER KOMMER VI ALDRIG IND I
 			String[] stringarraymove = s.split(" ");
-			System.out.println("I am the DnE else statement :) HELLO!");
-			System.out.println("I should move the player");
+
+			System.out.println("A player moved");
 
 			for (String str : stringarraymove) {
 				System.out.println(str);
@@ -323,12 +332,15 @@ public class Main extends Application {
 				y = 0; // for compiler
 			}
 			if (name.equalsIgnoreCase(playername)) {
+				System.out.println("I moved");
 				me.setDirection(dir);
 				me.setXpos(x);
 				me.setYpos(y);
 			}
 			else {
+				System.out.println("Someone else moved");
 				for (Player o : players) {
+					System.out.println(o.getName());
 					if (o.getName().equalsIgnoreCase(name)) {
 						o.setDirection(dir);
 						o.setXpos(x);
@@ -336,42 +348,7 @@ public class Main extends Application {
 					}
 				}
 			}
-		}
-		else if (s.startsWith("move")){
-			String[] stringarraymove = s.split(" ");
-			System.out.println("I am the DnE else statement 🙂 HELLO!");
-			System.out.println("I should move the player");
-
-			for (String str : stringarraymove) {
-				System.out.println(str);
-			}
-			String name = stringarraymove[1];
-			String dir = stringarraymove[4];
-			int x;
-			int y;
-			try {
-				x = Integer.parseInt(stringarraymove[2]);
-				y = Integer.parseInt(stringarraymove[3]);
-			}
-			catch (Exception e) {
-				System.out.println("Parse exception Main character creation");
-				x = 0; // for compiler
-				y = 0; // for compiler
-			}
-			if (name.equalsIgnoreCase(playername)) {
-				me.setDirection(dir);
-				me.setXpos(x);
-				me.setYpos(y);
-			}
-			else {
-				for (Player o : players) {
-					if (o.getName().equalsIgnoreCase(name)) {
-						o.setDirection(dir);
-						o.setXpos(x);
-						o.setYpos(y);
-					}
-				}
-			}
+			setupPlayers();
 		}
 
 	}
@@ -395,6 +372,38 @@ public class Main extends Application {
 			Player p = new Player(name, x, y, dir);
 			players.add(p);
 
+		}
+	}
+
+	public static void setupPlayers() {
+
+		if (me.getDirection().equals("right")) {
+			fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_right));
+		};
+		if (me.getDirection().equals("left")) {
+			fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_left));
+		};
+		if (me.getDirection().equals("up")) {
+			fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_up));
+		};
+		if (me.getDirection().equals("down")) {
+			fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_down));
+		};
+
+
+		for (Player p : players) {
+			if (p.getDirection().equals("right")) {
+				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_right));
+			};
+			if (p.getDirection().equals("left")) {
+				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_left));
+			};
+			if (p.getDirection().equals("up")) {
+				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_up));
+			};
+			if (p.getDirection().equals("down")) {
+				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_down));
+			};
 		}
 	}
 
