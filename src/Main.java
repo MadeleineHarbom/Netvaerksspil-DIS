@@ -273,25 +273,24 @@ public class Main extends Application {
     }
 
 	public static void decodeAndExecute(String s) {
-		String[] stringarray = s.split(" ");
-        for (String str : stringarray) {
-            System.out.println(str);
-        }
-		String name = stringarray[1];
-		String dir = stringarray[4];
-		int x;
-		int y;
-		try {
-			x = Integer.parseInt(stringarray[2]);
-			y = Integer.parseInt(stringarray[3]);
-		}
-		catch (Exception e) {
-			System.out.println("Parse exception Main character creation");
-			x = 0; // for compiler
-			y = 0; // for compiler
-		}
 		if (s.startsWith("charinit")) {
-			
+			String[] stringarray = s.split(" ");
+	        for (String str : stringarray) {
+	            System.out.println(str);
+	        }
+			String name = stringarray[1];
+			String dir = stringarray[4];
+			int x;
+			int y;
+			try {
+				x = Integer.parseInt(stringarray[2]);
+				y = Integer.parseInt(stringarray[3]);
+			}
+			catch (Exception e) {
+				System.out.println("Parse exception Main character creation");
+				x = 0; // for compiler
+				y = 0; // for compiler
+			}
             Player p = new Player(name, x, y, dir);
 			if (Main.playername.equalsIgnoreCase(name))  {
 			    me = p;
@@ -304,12 +303,39 @@ public class Main extends Application {
 
 
 		}
-		else {
-			for (Player p : players) {
-				if (name.equalsIgnoreCase(p.getName())) {
-					p.setXpos(x);
-					p.setYpos(y);
-					p.setDirection(dir);
+		else if (s.startsWith("move")){
+			String[] stringarraymove = s.split(" ");
+			System.out.println("I am the DnE else statement 🙂 HELLO!");
+			System.out.println("I should move the player");
+
+			for (String str : stringarraymove) {
+				System.out.println(str);
+			}
+			String name = stringarraymove[1];
+			String dir = stringarraymove[4];
+			int x;
+			int y;
+			try {
+				x = Integer.parseInt(stringarraymove[2]);
+				y = Integer.parseInt(stringarraymove[3]);
+			}
+			catch (Exception e) {
+				System.out.println("Parse exception Main character creation");
+				x = 0; // for compiler
+				y = 0; // for compiler
+			}
+			if (name.equalsIgnoreCase(playername)) {
+				me.setDirection(dir);
+				me.setXpos(x);
+				me.setYpos(y);
+			}
+			else {
+				for (Player o : players) {
+					if (o.getName().equalsIgnoreCase(name)) {
+						o.setDirection(dir);
+						o.setXpos(x);
+						o.setYpos(y);
+					}
 				}
 			}
 		}
