@@ -400,16 +400,16 @@ public class Main extends Application {
 		for (Player p : players) {
 			System.out.println(p.getName());
 			if (p.getDirection().equals("right")) {
-				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_right));
+				fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_right));
 			};
 			if (p.getDirection().equals("left")) {
-				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_left));
+				fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_left));
 			};
 			if (p.getDirection().equals("up")) {
-				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_up));
+				fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_up));
 			};
 			if (p.getDirection().equals("down")) {
-				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_down));
+				fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_down));
 			};
 		}
 	}
