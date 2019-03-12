@@ -32,28 +32,29 @@ public class InfoScreen extends Stage  {
         Label lblName = new Label("Navn:");
         pane.add(lblName, 0, 0);
         
-        Label lblIPAddress = new Label("IPv4 Adrdress:");
-        pane.add(lblIPAddress, 0, 1);
-        
         txfName = new TextField();
         pane.add(txfName, 1, 0);
         
-        TextField txfIPAddress = new TextField();
-        pane.add(txfIPAddress, 1, 1);
+        Button btnKlar = new Button("Klar");
+        pane.add(btnKlar, 1, 2);
+        btnKlar.setOnAction(event -> this.klarAction());
         
-        Button btnOkay = new Button("Okay");
-        pane.add(btnOkay, 1, 2);
-        btnOkay.setOnAction(event -> this.okayAction());
+        Button btnStart = new Button("Start!");
+        pane.add(btnStart, 2, 2);
+        btnStart.setOnAction(event -> this.startAction());
         
     }
-
-
-    private void okayAction() {
+        
+	private void klarAction() {
         String[] s = txfName.getText().split(" ");
         Main.playername = s[0];
+        Main.sendName();
         System.out.println("From InfoScreen: " + s[0]);
-        hide();
     }
+	
+	private void startAction() {
+		//Send start spil til serveren
+	}
     
          
        

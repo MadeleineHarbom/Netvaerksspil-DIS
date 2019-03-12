@@ -85,14 +85,7 @@ public class Main extends Application {
         }
         System.out.println(playername);
 
-        try {
-            outToServer.writeBytes("name " + playername + '\n');
-            System.out.println("Client: Name sent");
-            outToServer.flush(); //Hmmm
-        }
-        catch (Exception e) {
-            System.out.println("main failed to send name");
-        }
+        
 
 		readyCheck();
 
@@ -174,6 +167,17 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void sendName() {
+		try {
+            outToServer.writeBytes("name " + playername + '\n');
+            System.out.println("Client: Name sent");
+            outToServer.flush(); //Hmmm
+        }
+        catch (Exception e) {
+            System.out.println("main failed to send name");
+        }
 	}
 
 	public void playerMoved(int delta_x, int delta_y, String direction) {
@@ -297,7 +301,7 @@ public class Main extends Application {
 				y = 0; // for compiler
 			}
             Player p = new Player(name, x, y, dir);
-			if (Main.playername.equalsIgnoreCase(name))  {
+			if (Main.playername.equalsIgnoreCase(name) && me == null)  {
 			    me = p;
                 System.out.println("Hero created");
             }
