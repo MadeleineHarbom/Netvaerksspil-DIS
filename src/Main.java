@@ -358,9 +358,12 @@ public class Main extends Application {
 			setupPlayers();
 		}
 		else if(s.startsWith("start")) {
-			infoScreen.close();
 			gameon = true;
 		}
+		else {
+			System.out.println(s);
+		}
+		
 
 	}
 

@@ -75,6 +75,7 @@ public class ConnectionToClientThread extends Thread {
 			String[] sa = message.split(" ");
 			Server.names.add(sa[1]); //Send to server
             Server.createRandomizedCharacter(sa[1]);
+            push2client.writeBytes("Besked" + '\n');
             
 		}
 		else if (message.toLowerCase().equals(ready)) {
