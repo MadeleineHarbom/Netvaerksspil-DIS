@@ -40,7 +40,6 @@ public class Main extends Application {
 	private static Label[][] fields;
 	private TextArea scoreList;
 	private static InfoScreen infoScreen;
-	private static boolean gameon;
 	
 	private  String[] board = {    // 20x20
 			"wwwwwwwwwwwwwwwwwwww",
@@ -78,21 +77,11 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		infoScreen = new InfoScreen("Indtast oplysninger");
 		infoScreen.showAndWait();
-//        try {
-//            connectToServer();
-//        }
-//        catch (Exception e) {
-//            System.out.println("cant connect to server");
-//        }
-//        System.out.println(playername);
+
 
         
 
 		//readyCheck();
-
-        while (!gameon) {
-        	
-        }
 
 		try {
 			GridPane grid = new GridPane();
@@ -357,14 +346,6 @@ public class Main extends Application {
 			}
 			setupPlayers();
 		}
-		else if(s.startsWith("start")) {
-			gameon = true;
-		}
-		else {
-			System.out.println(s);
-		}
-		
-
 	}
 
 	public void createPlayer(String s) {

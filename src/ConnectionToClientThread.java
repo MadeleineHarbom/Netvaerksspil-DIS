@@ -74,9 +74,7 @@ public class ConnectionToClientThread extends Thread {
 			System.out.println("From C2C after name reveived: " + message);
 			String[] sa = message.split(" ");
 			Server.names.add(sa[1]); //Send to server
-            Server.createRandomizedCharacter(sa[1]);
-            push2client.writeBytes("Besked" + '\n');
-            
+            Server.createRandomizedCharacter(sa[1]);            
 		}
 		else if (message.toLowerCase().equals(ready)) {
 		    ready = true;

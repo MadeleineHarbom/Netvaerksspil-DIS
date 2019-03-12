@@ -68,9 +68,8 @@ public class InfoScreen extends Stage  {
 		catch (IOException e) {
 			System.out.println("Infoscreen objected to starting the game");
 		}
-	}
-    
-         
+		this.hide();
+	}     
        
 
 }

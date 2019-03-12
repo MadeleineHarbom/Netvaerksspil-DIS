@@ -61,11 +61,6 @@ public class Server {
     		//get the name. How? Skal Server ha en getMessage metode?
     	}
 
-    	for(Player p : players) {
-    		broadcast("charinit " + p.getDirection());
-            System.out.println("char init braodcasted");
-		}
-
     	while (gameon) {
     	    if (queue[counter] != null) {
 				String[] s = queue[counter].getString().split(" ");
@@ -175,6 +170,10 @@ public class Server {
 		try {
 			Player p = new Player(s, x, y, dir);
 			players.add(p);
+			for(Player ps : players) {
+	    		broadcast("charinit " + ps.getPosition());
+	            System.out.println("char init braodcasted");
+			}
 		}
 		catch (Exception e) {
 			System.out.println("Character creation failed");
