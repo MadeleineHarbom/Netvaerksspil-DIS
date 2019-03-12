@@ -16,6 +16,9 @@ public class Server {
 
     static ArrayList<String> names = new ArrayList<>();
 
+
+    //TODO queue
+    //TODO Check saa grafik virker
     private static  String[] board = {    // 20x20
             "wwwwwwwwwwwwwwwwwwww",
             "w        ww        w",
@@ -91,7 +94,7 @@ public class Server {
         }
 
 
-		//TODO Queue
+
 
 
 
@@ -111,10 +114,8 @@ public class Server {
 			mover.addPoints(10);
 			try {
 
-				//broadcast(p.getAllInfo());
 
-				//broadcast(p.getAllInfo());
-				//TODO Lave en sout my msg
+
 				System.out.println("Mover " + mover.getAllInfo());
 				broadcast("move " + mover.getAllInfo());
 			}
@@ -152,7 +153,7 @@ public class Server {
 
 	public static void startGame() throws IOException{
 		System.out.println("Game started");
-		//TODO pushe alle characters til brugerne
+
 		for (Player p : players) {
 			broadcast("charinit " + p.getPosition());
             System.out.println("Player pushed");

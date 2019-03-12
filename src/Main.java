@@ -20,7 +20,7 @@ import javafx.scene.text.*;
 
 public class Main extends Application {
 
-	static String ip = "localhost";//"10.24.4.97";
+	static String ip = "localhost";//"192.168.1.109";
 	static int port = 7777;
 	static Socket clientSocket;
 	static DataOutputStream outToServer;
@@ -376,7 +376,9 @@ public class Main extends Application {
 	}
 
 	public static void setupPlayers() {
-
+		if (me == null) {
+			System.out.println("Rage!!! Hero not found");
+		}
 		if (me.getDirection().equals("right")) {
 			fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_right));
 		};
@@ -390,8 +392,9 @@ public class Main extends Application {
 			fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_down));
 		};
 
-
+		System.out.println("Antal spiller: " + players.size());
 		for (Player p : players) {
+			System.out.println(p.getName());
 			if (p.getDirection().equals("right")) {
 				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_right));
 			};
