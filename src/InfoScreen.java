@@ -1,5 +1,7 @@
 package src;
 
+import java.io.IOException;
+
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -53,7 +55,12 @@ public class InfoScreen extends Stage  {
     }
 	
 	private void startAction() {
-		//Send start spil til serveren
+		try {
+			Main.outToServer.writeBytes("Ready" + '\n');
+		}
+		catch (IOException e) {
+			System.out.println("Infoscreen objected to starting the game");
+		}
 	}
     
          
