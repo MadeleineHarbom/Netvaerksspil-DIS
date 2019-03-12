@@ -39,7 +39,8 @@ public class Main extends Application {
 
 	private static Label[][] fields;
 	private TextArea scoreList;
-	private InfoScreen infoScreen;
+	private static InfoScreen infoScreen;
+	private static boolean gameon;
 	
 	private  String[] board = {    // 20x20
 			"wwwwwwwwwwwwwwwwwwww",
@@ -87,9 +88,11 @@ public class Main extends Application {
 
         
 
-		readyCheck();
+		//readyCheck();
 
-
+        while (!gameon) {
+        	
+        }
 
 		try {
 			GridPane grid = new GridPane();
@@ -353,6 +356,10 @@ public class Main extends Application {
 				}
 			}
 			setupPlayers();
+		}
+		else if(s.startsWith("start")) {
+			infoScreen.close();
+			gameon = true;
 		}
 
 	}

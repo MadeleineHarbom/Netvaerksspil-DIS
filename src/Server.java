@@ -51,7 +51,7 @@ public class Server {
     	int size = 0;
 
 
-    	while (!gameon) { //When size == readycounter
+    	while (players.size() > counter) { //When size == readycounter
     		//accepterer en client når den forsøger at forbinde, og starter en serverSocketTraad
 			Socket sock = serverSocket.accept();
 
