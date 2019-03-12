@@ -41,9 +41,9 @@ public class InfoScreen extends Stage  {
         pane.add(btnKlar, 1, 2);
         btnKlar.setOnAction(event -> this.klarAction());
         
-        Button btnStart = new Button("Start!");
-        pane.add(btnStart, 2, 2);
-        btnStart.setOnAction(event -> this.startAction());
+//        Button btnStart = new Button("Start!");
+//        pane.add(btnStart, 2, 2);
+//        btnStart.setOnAction(event -> this.startAction());
         
     }
         
@@ -59,17 +59,18 @@ public class InfoScreen extends Stage  {
             Main.playername = s[0];
             Main.sendName();
             System.out.println("From InfoScreen: " + s[0]);
+            this.hide();
         }
 	
-	private void startAction() {
-		try {
-			Main.outToServer.writeBytes("Ready" + '\n');
-		}
-		catch (IOException e) {
-			System.out.println("Infoscreen objected to starting the game");
-		}
-		this.hide();
-	}     
+//	private void startAction() {
+//		try {
+//			Main.outToServer.writeBytes("Ready" + '\n');
+//		}
+//		catch (IOException e) {
+//			System.out.println("Infoscreen objected to starting the game");
+//		}
+//		this.hide();
+//	}
        
 
 }

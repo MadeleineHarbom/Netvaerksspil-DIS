@@ -46,7 +46,7 @@ public class ConnectionToClientThread extends Thread {
 
 			while (true) {
 				message = inFromClient.readLine();
-				Server.broadcast(message);
+				//Server.broadcast(message);
 				decode(message);
 			}
 
@@ -69,6 +69,7 @@ public class ConnectionToClientThread extends Thread {
 //			this.ready = true;
 //			Server.requestGameStart();
 			Server.broadcast("start");
+			//broadxast characters
 		}
 		else if (message.toLowerCase().startsWith("name")){
 			System.out.println("From C2C after name reveived: " + message);

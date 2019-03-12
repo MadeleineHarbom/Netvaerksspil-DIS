@@ -24,6 +24,9 @@ public class RecieveThread extends Thread {
             catch (IOException e) {
                 System.out.println("IO exception");
             }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
 
         }
     }

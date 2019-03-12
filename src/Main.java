@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -40,6 +41,8 @@ public class Main extends Application {
 	private static Label[][] fields;
 	private TextArea scoreList;
 	private static InfoScreen infoScreen;
+
+	public static Button startbtn;
 	
 	private  String[] board = {    // 20x20
 			"wwwwwwwwwwwwwwwwwwww",
@@ -64,7 +67,7 @@ public class Main extends Application {
 			"wwwwwwwwwwwwwwwwwwww"
 	};
 	//TODO det andre spiller kan ikke bevaege sig!
-	//TODO update GUI saa att cunsom characters vises direkte, ikke Orville
+
 
 	
 	// -------------------------------------------
@@ -78,9 +81,6 @@ public class Main extends Application {
 		infoScreen = new InfoScreen("Indtast oplysninger");
 		infoScreen.showAndWait();
 
-
-        
-
 		//readyCheck();
 
 		try {
@@ -88,6 +88,7 @@ public class Main extends Application {
 			grid.setHgap(10);
 			grid.setVgap(10);
 			grid.setPadding(new Insets(0, 10, 0, 10));
+			grid.setGridLinesVisible(true);
 
 			Text mazeLabel = new Text("Maze:");
 			mazeLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
@@ -129,6 +130,10 @@ public class Main extends Application {
 			grid.add(scoreLabel, 1, 0); 
 			grid.add(boardGrid,  0, 1);
 			grid.add(scoreList,  1, 1);
+
+			startbtn = new Button("Start");
+			grid.add(startbtn,1,2);
+			startbtn.setOnAction(event -> startGame());
 						
 			Scene scene = new Scene(grid,scene_width,scene_height);
 			primaryStage.setScene(scene);
@@ -159,6 +164,17 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void startGame() {
+		try {
+			outToServer.writeBytes("ready" + '\n');
+			outToServer.flush();
+		}
+		catch (Exception e) {
+			System.out.println("Main sent ready");
+		}
+
 	}
 	
 	public static void sendName() {
@@ -275,117 +291,115 @@ public class Main extends Application {
 
 	public static void decodeAndExecute(String s) {
 		if (s.startsWith("charinit")) {
-			String[] stringarray = s.split(" ");
-	        for (String str : stringarray) {
-	            System.out.println(str);
-	        }
-			String name = stringarray[1];
-			String dir = stringarray[4];
-			int x;
-			int y;
-			try {
-				x = Integer.parseInt(stringarray[2]);
-				y = Integer.parseInt(stringarray[3]);
-			}
-			catch (Exception e) {
-				System.out.println("Parse exception Main character creation");
-				x = 0; // for compiler
-				y = 0; // for compiler
-			}
-            Player p = new Player(name, x, y, dir);
-			if (Main.playername.equalsIgnoreCase(name) && me == null)  {
-			    me = p;
-                System.out.println("Hero created");
-            }
-            else {
-                players.add(p);
-                System.out.println("character created");
-            }
-
-
+			createPlayer(s);
+			//setupPlayers();
 		}
 
 		else if (s.startsWith("move")){
-			//TODO HER KOMMER VI ALDRIG IND I
-			String[] stringarraymove = s.split(" ");
-
-			System.out.println("A player moved");
-
-			for (String str : stringarraymove) {
-				System.out.println(str);
-			}
-			String name = stringarraymove[1];
-			String dir = stringarraymove[4];
-			int x;
-			int y;
-			try {
-				x = Integer.parseInt(stringarraymove[2]);
-				y = Integer.parseInt(stringarraymove[3]);
-			}
-			catch (Exception e) {
-				System.out.println("Parse exception Main character creation");
-				x = 0; // for compiler
-				y = 0; // for compiler
-			}
-			if (name.equalsIgnoreCase(playername)) {
-				System.out.println("I moved");
-				me.setDirection(dir);
-				me.setXpos(x);
-				me.setYpos(y);
-			}
-			else {
-				System.out.println("Someone else moved");
-				for (Player o : players) {
-					System.out.println(o.getName());
-					if (o.getName().equalsIgnoreCase(name)) {
-						o.setDirection(dir);
-						o.setXpos(x);
-						o.setYpos(y);
-					}
-				}
-			}
-			setupPlayers();
+			playerMove(s);
+		}
+		else if(s.startsWith("start")) {
+			Platform.runLater(runLaterSetupPlayers);
+			//spillet starter
+			//skal ha alle spiller ind i Main
+		}
+		else {
+			System.out.println("I shouldnt be in this else statement");
 		}
 	}
 
-	public void createPlayer(String s) {
-		String[] sa = s.split(" ");
-		String name = sa[0];
+	public static void createPlayer(String s) {
+		String[] stringarray = s.split(" ");
+		for (String str : stringarray) {
+			System.out.println(str);
+		}
+		String name = stringarray[1];
+		String dir = stringarray[4];
 		int x;
 		int y;
 		try {
-			x = Integer.parseInt(sa[1]);
-			y = Integer.parseInt(sa[2]);
+			x = Integer.parseInt(stringarray[2]);
+			y = Integer.parseInt(stringarray[3]);
 		}
 		catch (Exception e) {
-			System.out.println("Parse issues in Main");
-			x = 0;//til compler
-			y= 0; //Til compiler
+			System.out.println("Parse exception Main character creation");
+			x = 0; // for compiler
+			y = 0; // for compiler
 		}
-		String dir = sa[3];
-		if (!(name.equals(me.getName()))) {
-			Player p = new Player(name, x, y, dir);
+		Player p = new Player(name, x, y, dir);
+		if (Main.playername.equalsIgnoreCase(name) && me == null)  {
+			me = p;
+			System.out.println("Hero created");
+			System.out.println(me.getAllInfo());
+		}
+		else {
 			players.add(p);
-
+			System.out.println("character created");
 		}
+	}
+
+	public static void playerMove(String s) {
+		//TODO HER KOMMER VI ALDRIG IND I
+		String[] stringarraymove = s.split(" ");
+
+		System.out.println("A player moved");
+
+		for (String str : stringarraymove) {
+			System.out.println(str);
+		}
+		String name = stringarraymove[1];
+		String dir = stringarraymove[4];
+		int x;
+		int y;
+		try {
+			x = Integer.parseInt(stringarraymove[2]);
+			y = Integer.parseInt(stringarraymove[3]);
+		}
+		catch (Exception e) {
+			System.out.println("Parse exception Main character creation");
+			x = 0; // for compiler
+			y = 0; // for compiler
+		}
+		if (name.equalsIgnoreCase(playername)) {
+			System.out.println("I moved");
+			me.setDirection(dir);
+			me.setXpos(x);
+			me.setYpos(y);
+		}
+		else {
+			System.out.println("Someone else moved");
+			for (Player o : players) {
+				System.out.println(o.getName());
+				if (o.getName().equalsIgnoreCase(name)) {
+					o.setDirection(dir);
+					o.setXpos(x);
+					o.setYpos(y);
+				}
+			}
+		}
+		setupPlayers();
 	}
 
 	public static void setupPlayers() {
 		if (me == null) {
 			System.out.println("Rage!!! Hero not found");
 		}
-		if (me.getDirection().equals("right")) {
-			fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_right));
-		};
-		if (me.getDirection().equals("left")) {
-			fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_left));
-		};
-		if (me.getDirection().equals("up")) {
-			fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_up));
-		};
-		if (me.getDirection().equals("down")) {
-			fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_down));
-		};
+		else {
+
+			if (me.getDirection().equals("right")) {
+				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_right));
+			}
+			if (me.getDirection().equals("left")) {
+				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_left));
+			}
+			if (me.getDirection().equals("up")) {
+				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_up));
+			}
+			if (me.getDirection().equals("down")) {
+				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_down));
+			}
+		}
+
 
 		System.out.println("Antal spiller: " + players.size());
 		for (Player p : players) {
@@ -405,6 +419,47 @@ public class Main extends Application {
 		}
 	}
 
+	static Runnable runLaterSetupPlayers = new Runnable() {
+		@Override
+		public void run() {
+			if (me == null) {
+				System.out.println("Rage!!! Hero not found");
+			}
+			else {
+
+				if (me.getDirection().equals("right")) {
+					fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_right));
+				}
+				if (me.getDirection().equals("left")) {
+					fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_left));
+				}
+				if (me.getDirection().equals("up")) {
+					fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_up));
+				}
+				if (me.getDirection().equals("down")) {
+					fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_down));
+				}
+			}
+
+
+			System.out.println("Antal spiller: " + players.size());
+			for (Player p : players) {
+				System.out.println(p.getName());
+				if (p.getDirection().equals("right")) {
+					fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_right));
+				};
+				if (p.getDirection().equals("left")) {
+					fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_left));
+				};
+				if (p.getDirection().equals("up")) {
+					fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_up));
+				};
+				if (p.getDirection().equals("down")) {
+					fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_down));
+				};
+			}
+		}
+	};
 
 }
 
