@@ -78,13 +78,13 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		infoScreen = new InfoScreen("Indtast oplysninger");
 		infoScreen.showAndWait();
-        try {
-            connectToServer();
-        }
-        catch (Exception e) {
-            System.out.println("cant connect to server");
-        }
-        System.out.println(playername);
+//        try {
+//            connectToServer();
+//        }
+//        catch (Exception e) {
+//            System.out.println("cant connect to server");
+//        }
+//        System.out.println(playername);
 
         
 

@@ -47,12 +47,19 @@ public class InfoScreen extends Stage  {
         
     }
         
-	private void klarAction() {
-        String[] s = txfName.getText().split(" ");
-        Main.playername = s[0];
-        Main.sendName();
-        System.out.println("From InfoScreen: " + s[0]);
-    }
+        private void klarAction() {
+    		try {
+                Main.connectToServer();
+                System.out.println("Connected infoscreen");
+            }
+            catch (Exception e) {
+                System.out.println("Inforscreen cant connect to server");
+            }
+            String[] s = txfName.getText().split(" ");
+            Main.playername = s[0];
+            Main.sendName();
+            System.out.println("From InfoScreen: " + s[0]);
+        }
 	
 	private void startAction() {
 		try {
