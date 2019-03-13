@@ -54,14 +54,20 @@ public class Server {
     	while (!gameon) { //When size == readycounter
     		//accepterer en client når den forsøger at forbinde, og starter en serverSocketTraad
 			Socket sock = serverSocket.accept();
-
+			if (gameon) {
+				System.out.println("I want to break free");
+				break;
+			}
     		ConnectionToClientThread st = new ConnectionToClientThread(sock);
     		st.start();
     		mahThreads.add(st);
     		//get the name. How? Skal Server ha en getMessage metode?
     	}
 
+		System.out.println("Loop change");
+
     	while (gameon) {
+			System.out.println("Game on :)");
     	    if (queue[counter] != null) {
 				String[] s = queue[counter].getString().split(" ");
 				//kan jeg dette3 uden at starte traaden?

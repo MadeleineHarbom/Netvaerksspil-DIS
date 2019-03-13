@@ -147,6 +147,7 @@ public class Main extends Application {
 				case RIGHT: playerMoved(+1,0,"right"); break;
 				//send to server?
 				default: break;
+
 				}
 			});
 			
@@ -170,9 +171,10 @@ public class Main extends Application {
 		try {
 			outToServer.writeBytes("ready" + '\n');
 			outToServer.flush();
+            System.out.println("I am ready to go");
 		}
 		catch (Exception e) {
-			System.out.println("Main sent ready");
+			System.out.println("Main not sent ready");
 		}
 
 	}
@@ -228,6 +230,7 @@ public class Main extends Application {
 		//Mades BS
 		try {
 			outToServer.writeBytes(me.getPosition() + '\n');
+            System.out.println("Sent my movement to server: "+ me.getPosition());
 		}
 		catch (IOException io) {
 			System.out.println("IO Exception in main trying to write move to server");

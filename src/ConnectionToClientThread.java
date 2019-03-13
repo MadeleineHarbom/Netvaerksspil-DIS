@@ -66,10 +66,10 @@ public class ConnectionToClientThread extends Thread {
 	public void decode(String message) throws IOException{
 
 		if (message.toLowerCase().startsWith("ready")) {
-//			this.ready = true;
-//			Server.requestGameStart();
+			Server.gameon = true;
+			System.out.println("Client told me to go");
 			Server.broadcast("start");
-			//broadxast characters
+
 		}
 		else if (message.toLowerCase().startsWith("name")){
 			System.out.println("From C2C after name reveived: " + message);
