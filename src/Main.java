@@ -354,20 +354,25 @@ public class Main extends Application {
 		String dir = stringarraymove[4];
 		int x;
 		int y;
+		int p;
 		try {
 			x = Integer.parseInt(stringarraymove[2]);
 			y = Integer.parseInt(stringarraymove[3]);
+			p = Integer.parseInt(stringarraymove[5]);
 		}
 		catch (Exception e) {
 			System.out.println("Parse exception Main character creation");
 			x = 0; // for compiler
 			y = 0; // for compiler
+			p = 0;
 		}
 		if (name.equalsIgnoreCase(playername)) {
 			System.out.println("I moved");
 			me.setDirection(dir);
 			me.setXpos(x);
 			me.setYpos(y);
+			//Tæller måske dobbelt, men skal vist opdateres her iforhold til queue
+			me.addPoints(p);
 		}
 		else {
 			System.out.println("Someone else moved");
@@ -377,9 +382,11 @@ public class Main extends Application {
 					o.setDirection(dir);
 					o.setXpos(x);
 					o.setYpos(y);
+					o.addPoints(p);
 				}
 			}
 		}
+		//tilføj måske scoreList.setText(getScoreList());
         Platform.runLater(runLaterSetupPlayers);
 	}
 
