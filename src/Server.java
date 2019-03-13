@@ -49,27 +49,29 @@ public class Server {
     	ServerSocket serverSocket = new ServerSocket(portNumber);
 
     	int size = 0;
+    	
+    	acceptThread aT = new acceptThread(serverSocket);
+    	aT.start();
 
-
-    	while (!gameon) { //When size == readycounter
-    		//accepterer en client når den forsøger at forbinde, og starter en serverSocketTraad
-			try {
-
-				Socket sock = serverSocket.accept();
-				if (gameon) {
-					System.out.println("I want to break free");
-					break;
-				}
-				ConnectionToClientThread st = new ConnectionToClientThread(sock);
-				st.start();
-				mahThreads.add(st);
-				//get the name. How? Skal Server ha en getMessage metode?
-			}
-			catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
-
-    	}
+//    	while (!gameon) { //When size == readycounter
+//    		//accepterer en client når den forsøger at forbinde, og starter en serverSocketTraad
+//			try {
+//
+//				Socket sock = serverSocket.accept();
+//				if (gameon) {
+//					System.out.println("I want to break free");
+//					break;
+//				}
+//				ConnectionToClientThread st = new ConnectionToClientThread(sock);
+//				st.start();
+//				mahThreads.add(st);
+//				//get the name. How? Skal Server ha en getMessage metode?
+//			}
+//			catch (Exception e) {
+//				System.out.println(e.getMessage());
+//			}
+//
+//    	}
 
 		System.out.println("Loop change");
 
