@@ -13,6 +13,7 @@ public class Server {
 	static boolean gameon = false;
 	static ConnectionToClientThread[] queue = new ConnectionToClientThread[10000];
 	static int counter = 0;
+	static int queuesize = 0;
 
     static ArrayList<String> names = new ArrayList<>();
 
@@ -61,33 +62,16 @@ public class Server {
 
     	while (gameon) {
 			System.out.println("Game on :)");
-    	    if (queue[counter] != null) {
-				String[] s = queue[counter].getString().split(" ");
-				//kan jeg dette3 uden at starte traaden?
-				Player mover = null;
-				for (Player p : players) {
-					if (p.getName().equals(s[0])) {
-						mover = p;
-					}
-				}
-				int x;
-				int y;
-				try {
-					x = Integer.parseInt(s[1]);
-					y = Integer.parseInt(s[2]);
-				}
-				catch (Exception e) {
-					System.out.println("Parse issues");
-					x =0;
-					y=0;
-				}
-				checkMove(x, y, mover);
+    	    if (queuesize > counter) {
+				gameLoop(); //enqueue...  static issues
 
-				counter++;
+
             }
         }
 
        }
+
+
 
 	public static void broadcast(String s) throws IOException {
 		for (ConnectionToClientThread st : mahThreads) {
@@ -223,6 +207,43 @@ public class Server {
         }
 
 
+    }
+
+    public static void enqueue(ConnectionToClientThread thread) {
+        System.out.println("Enqueueing");
+        queue[queuesize] =  thread;
+        queuesize++;
+    }
+
+    public static ConnectionToClientThread dequeue() {
+        System.out.println("dequeueing");
+        ConnectionToClientThread thread = queue[counter];
+        counter++;
+        return thread;
+
+    }
+
+    public static void gameLoop() {
+        String[] s = dequeue().getString().split(" ");
+        //kan jeg dette3 uden at starte traaden?
+        Player mover = null;
+        for (Player p : players) {
+            if (p.getName().equals(s[0])) {
+                mover = p;
+            }
+        }
+        int x;
+        int y;
+        try {
+            x = Integer.parseInt(s[1]);
+            y = Integer.parseInt(s[2]);
+        }
+        catch (Exception e) {
+            System.out.println("Parse issues");
+            x =0;
+            y=0;
+        }
+        checkMove(x, y, mover);
     }
 
 

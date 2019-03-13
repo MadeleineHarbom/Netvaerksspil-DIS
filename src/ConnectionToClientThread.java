@@ -14,7 +14,7 @@ public class ConnectionToClientThread extends Thread {
 	SendThread sender;
 	RecieveThread reciever;
 	DataOutputStream push2client;
-	boolean ready = false;
+	static boolean ready = false;
 	static String message;
 
 
@@ -35,6 +35,10 @@ public class ConnectionToClientThread extends Thread {
 		}
 
 	}
+
+	private void enqueue() {
+	    Server.enqueue(this);
+    }
 	
 	
 	public void run() {
@@ -66,42 +70,15 @@ public class ConnectionToClientThread extends Thread {
 	public void decode(String message) throws IOException{
 		System.out.println("I am the C2C decoder. This is my string: " + message);
 		if (message.toLowerCase().startsWith("ready")) {
-			Server.gameon = true;
-			System.out.println("Client told me to go");
-			Server.broadcast("start");
-			ready = true;
+			ready(message);
 
 		}
 		else if (message.toLowerCase().startsWith("name")){
-			System.out.println("From C2C after name reveived: " + message);
-			String[] sa = message.split(" ");
-			Server.names.add(sa[1]); //Send to server
-            Server.createRandomizedCharacter(sa[1]);
+			makeChar(message);
 		}
 		else if (message.startsWith("move")) {
-			String[] stringarray = message.split(" ");
-			String name = stringarray[1];
-
-			int x;
-			int y;
-			String dir = stringarray[4];
-			Player pplayer = Server.findPlayer(name);
-			try {
-				x = Integer.parseInt(stringarray[2]);
-				y = Integer.parseInt(stringarray[3]);
-			}
-			catch (Exception e) {
-				System.out.println("C2CT failed to parse coords");
-				x = 0;
-				y = 0;
-			}
-			if (pplayer != null) {
-				System.out.println("C2C calling check move");
-				Server.checkMove(x, y, pplayer);
-			}
-			else {
-				System.out.println("Couldnt find player");
-			}
+		    Server.enqueue(this);
+			//move(message);
 
 		}
 		else {
@@ -113,5 +90,46 @@ public class ConnectionToClientThread extends Thread {
 	public static String getString() {
 		return message;
 	}
+
+	public static void move(String message) {
+        System.out.println("Move in C2C");
+        String[] stringarray = message.split(" ");
+        String name = stringarray[1];
+
+        int x;
+        int y;
+        String dir = stringarray[4];
+        Player pplayer = Server.findPlayer(name);
+        try {
+            x = Integer.parseInt(stringarray[2]);
+            y = Integer.parseInt(stringarray[3]);
+        }
+        catch (Exception e) {
+            System.out.println("C2CT failed to parse coords");
+            x = 0;
+            y = 0;
+        }
+        if (pplayer != null) {
+            System.out.println("C2C calling check move");
+            Server.checkMove(x, y, pplayer);
+        }
+        else {
+            System.out.println("Couldnt find player");
+        }
+    }
+
+    public static void makeChar(String message) {
+        System.out.println("From C2C after name reveived: " + message);
+        String[] sa = message.split(" ");
+        Server.names.add(sa[1]); //Send to server
+        Server.createRandomizedCharacter(sa[1]);
+    }
+
+    public static void ready(String message) throws IOException {
+        Server.gameon = true;
+        System.out.println("Client told me to go");
+        Server.broadcast("start");
+        ready = true;
+    }
 
 }
