@@ -153,7 +153,7 @@ public class Main extends Application {
 			
             // Setting up start positions for standard players located in connecttoserver
 
-			setupPlayers();
+            Platform.runLater(runLaterSetupPlayers);
 
 
 			//fields[9][4].setGraphic(new ImageView(hero_up));
@@ -229,7 +229,7 @@ public class Main extends Application {
 		scoreList.setText(getScoreList());
 		//Mades BS
 		try {
-			outToServer.writeBytes(me.getPosition() + '\n');
+			outToServer.writeBytes("move "+ me.getPosition() + '\n');
             System.out.println("Sent my movement to server: "+ me.getPosition());
 		}
 		catch (IOException io) {
@@ -380,47 +380,47 @@ public class Main extends Application {
 				}
 			}
 		}
-		setupPlayers();
+        Platform.runLater(runLaterSetupPlayers);
 	}
 
-	public static void setupPlayers() {
-		if (me == null) {
-			System.out.println("Rage!!! Hero not found");
-		}
-		else {
-
-			if (me.getDirection().equals("right")) {
-				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_right));
-			}
-			if (me.getDirection().equals("left")) {
-				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_left));
-			}
-			if (me.getDirection().equals("up")) {
-				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_up));
-			}
-			if (me.getDirection().equals("down")) {
-				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_down));
-			}
-		}
-
-
-		System.out.println("Antal spiller: " + players.size());
-		for (Player p : players) {
-			System.out.println(p.getName());
-			if (p.getDirection().equals("right")) {
-				fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_right));
-			};
-			if (p.getDirection().equals("left")) {
-				fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_left));
-			};
-			if (p.getDirection().equals("up")) {
-				fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_up));
-			};
-			if (p.getDirection().equals("down")) {
-				fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_down));
-			};
-		}
-	}
+//	public static void setupPlayers() {
+//		if (me == null) {
+//			System.out.println("Rage!!! Hero not found");
+//		}
+//		else {
+//
+//			if (me.getDirection().equals("right")) {
+//				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_right));
+//			}
+//			if (me.getDirection().equals("left")) {
+//				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_left));
+//			}
+//			if (me.getDirection().equals("up")) {
+//				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_up));
+//			}
+//			if (me.getDirection().equals("down")) {
+//				fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_down));
+//			}
+//		}
+//
+//
+//		System.out.println("Antal spiller: " + players.size());
+//		for (Player p : players) {
+//			System.out.println(p.getName());
+//			if (p.getDirection().equals("right")) {
+//				fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_right));
+//			};
+//			if (p.getDirection().equals("left")) {
+//				fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_left));
+//			};
+//			if (p.getDirection().equals("up")) {
+//				fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_up));
+//			};
+//			if (p.getDirection().equals("down")) {
+//				fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_down));
+//			};
+//		}
+//	}
 
 	static Runnable runLaterSetupPlayers = new Runnable() {
 		@Override
@@ -429,7 +429,7 @@ public class Main extends Application {
 				System.out.println("Rage!!! Hero not found");
 			}
 			else {
-
+                //Saet allt tom tomt
 				if (me.getDirection().equals("right")) {
 					fields[me.getXpos()][me.getYpos()].setGraphic(new ImageView(hero_right));
 				}

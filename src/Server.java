@@ -52,26 +52,11 @@ public class Server {
     	
     	acceptThread aT = new acceptThread(serverSocket);
     	aT.start();
+    	while (!gameon) {
 
-//    	while (!gameon) { //When size == readycounter
-//    		//accepterer en client når den forsøger at forbinde, og starter en serverSocketTraad
-//			try {
-//
-//				Socket sock = serverSocket.accept();
-//				if (gameon) {
-//					System.out.println("I want to break free");
-//					break;
-//				}
-//				ConnectionToClientThread st = new ConnectionToClientThread(sock);
-//				st.start();
-//				mahThreads.add(st);
-//				//get the name. How? Skal Server ha en getMessage metode?
-//			}
-//			catch (Exception e) {
-//				System.out.println(e.getMessage());
-//			}
-//
-//    	}
+		}
+		//Broadcast
+
 
 		System.out.println("Loop change");
 
@@ -112,7 +97,9 @@ public class Server {
 	}
 
 	public static Player findPlayer (String name) {
+		System.out.println("Server.findPlayer");
     	for (Player p : players) {
+			System.out.println("Name :" + name + "... other name " + p.getName());
     		if (name.equalsIgnoreCase(p.getName())) {
     			return p;
 			}
@@ -122,6 +109,7 @@ public class Server {
 
 	public static String checkMove(int x, int y, Player mover) {
     	//TODO Spagetti
+		System.out.println("I am the checker of moves");
 		Player p = getPlayerAt(x,y);
 		if (p!=null) {
 			p.addPoints(-10);

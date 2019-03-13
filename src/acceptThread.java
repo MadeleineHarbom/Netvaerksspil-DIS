@@ -11,17 +11,20 @@ public class acceptThread extends Thread {
 	}
 	
 	public void run() {
-		try {
+		while (true) {
+			try {
 
-			Socket sock = serverSocket.accept();
-			ConnectionToClientThread st = new ConnectionToClientThread(sock);
-			st.start();
-			Server.mahThreads.add(st);
-			//get the name. How? Skal Server ha en getMessage metode?
+				Socket sock = serverSocket.accept();
+				ConnectionToClientThread st = new ConnectionToClientThread(sock);
+				st.start();
+				Server.mahThreads.add(st);
+				//get the name. How? Skal Server ha en getMessage metode?
+			}
+			catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 		}
-		catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+
 	}
 
 }
