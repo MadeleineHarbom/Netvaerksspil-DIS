@@ -18,7 +18,6 @@ public class Server {
 
 
     //TODO queue
-    //TODO Check saa grafik virker
     private static  String[] board = {    // 20x20
             "wwwwwwwwwwwwwwwwwwww",
             "w        ww        w",
