@@ -4,6 +4,8 @@ public class Player {
 	String name;
 	int xpos;
 	int ypos;
+	int xpre;
+	int ypre;
 	int point;
 	String direction;
 
@@ -23,12 +25,14 @@ public class Player {
 		return xpos;
 	}
 	public void setXpos(int xpos) {
+		this.xpre = this.xpos;
 		this.xpos = xpos;
 	}
 	public int getYpos() {
 		return ypos;
 	}
 	public void setYpos(int ypos) {
+		this.ypre = this.ypos;
 		this.ypos = ypos;
 	}
 	public String getDirection() {
@@ -54,5 +58,13 @@ public class Player {
 
 	public void updatePlayer(String s) {
 
+	}
+
+	public int getPreviousX() {
+		return this.xpre;
+	}
+
+	public int getPreviousY() {
+		return this.ypre;
 	}
 }
