@@ -53,15 +53,22 @@ public class Server {
 
     	while (!gameon) { //When size == readycounter
     		//accepterer en client når den forsøger at forbinde, og starter en serverSocketTraad
-			Socket sock = serverSocket.accept();
-			if (gameon) {
-				System.out.println("I want to break free");
-				break;
+			try {
+
+				Socket sock = serverSocket.accept();
+				if (gameon) {
+					System.out.println("I want to break free");
+					break;
+				}
+				ConnectionToClientThread st = new ConnectionToClientThread(sock);
+				st.start();
+				mahThreads.add(st);
+				//get the name. How? Skal Server ha en getMessage metode?
 			}
-    		ConnectionToClientThread st = new ConnectionToClientThread(sock);
-    		st.start();
-    		mahThreads.add(st);
-    		//get the name. How? Skal Server ha en getMessage metode?
+			catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+
     	}
 
 		System.out.println("Loop change");
@@ -94,17 +101,21 @@ public class Server {
             }
         }
 
-
-
-
-
-
-
        }
+
 	public static void broadcast(String s) throws IOException {
 		for (ConnectionToClientThread st : mahThreads) {
 			st.sendMsg(s);
 		}
+	}
+
+	public static Player findPlayer (String name) {
+    	for (Player p : players) {
+    		if (name.equalsIgnoreCase(p.getName())) {
+    			return p;
+			}
+		}
+		return null;
 	}
 
 	public static String checkMove(int x, int y, Player mover) {

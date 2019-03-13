@@ -69,6 +69,7 @@ public class ConnectionToClientThread extends Thread {
 			Server.gameon = true;
 			System.out.println("Client told me to go");
 			Server.broadcast("start");
+			ready = true;
 
 		}
 		else if (message.toLowerCase().startsWith("name")){
@@ -77,9 +78,30 @@ public class ConnectionToClientThread extends Thread {
 			Server.names.add(sa[1]); //Send to server
             Server.createRandomizedCharacter(sa[1]);            
 		}
-		else if (message.toLowerCase().equals(ready)) {
-		    ready = true;
-        }
+		else if (message.startsWith("move")) {
+			String[] stringarray = new String[5];
+			String name = stringarray[1];
+			int x;
+			int y;
+			String dir = stringarray[4];
+			Player pplayer = Server.findPlayer(name);
+			try {
+				x = Integer.parseInt(stringarray[2]);
+				y = Integer.parseInt(stringarray[3]);
+			}
+			catch (Exception e) {
+				System.out.println("C2CT failed to parse coords");
+				x = 0;
+				y = 0;
+			}
+			if (pplayer != null) {
+				Server.checkMove(x, y, pplayer);
+			}
+			else {
+				System.out.println("Couldnt find player");
+			}
+
+		}
 		else {
 			System.out.println(message);
 			//Laeg kaldet i koe
