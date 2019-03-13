@@ -335,7 +335,7 @@ public class Main extends Application {
 			System.out.println("Hero created");
 			System.out.println(me.getAllInfo());
 		}
-		else {
+		else if (!Main.playername.equalsIgnoreCase(name)){
 			players.add(p);
 			System.out.println("character created");
 		}
@@ -447,6 +447,7 @@ public class Main extends Application {
 
 			System.out.println("Antal spiller: " + players.size());
 			for (Player p : players) {
+                fields[p.getPreviousX()][p.getPreviousY()].setGraphic(new ImageView(image_floor));
 				System.out.println(p.getName());
 				if (p.getDirection().equals("right")) {
 					fields[p.getXpos()][p.getYpos()].setGraphic(new ImageView(hero_right));
