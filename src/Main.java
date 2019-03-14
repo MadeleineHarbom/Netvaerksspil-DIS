@@ -39,7 +39,7 @@ public class Main extends Application {
 	public static List<Player> players = new ArrayList<Player>();
 
 	private static Label[][] fields;
-	private TextArea scoreList;
+	private static TextArea scoreList;
 	private static InfoScreen infoScreen;
 
 	public static Button startbtn;
@@ -239,7 +239,7 @@ public class Main extends Application {
 
 	}
 
-	public String getScoreList() {
+	public static String getScoreList() {
 		StringBuffer b = new StringBuffer(100);
 		b.append(me + "\r\n");
 		for (Player p : players) {
@@ -386,7 +386,7 @@ public class Main extends Application {
 				}
 			}
 		}
-		//tilføj måske scoreList.setText(getScoreList());
+		scoreList.setText(getScoreList());
         Platform.runLater(runLaterSetupPlayers);
 	}
 
