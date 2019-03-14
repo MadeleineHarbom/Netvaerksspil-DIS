@@ -195,7 +195,7 @@ public class Main extends Application {
 		int x = me.getXpos(),y = me.getYpos();
 
 		if (board[y+delta_y].charAt(x+delta_x)=='w') {
-			me.addPoints(-1);
+			//me.addPoints(-1);
 		} 
 		else {
 			Player p = getPlayerAt(x+delta_x,y+delta_y);
@@ -203,7 +203,7 @@ public class Main extends Application {
 //              me.addPoints(10);
 //              p.addPoints(-10);
 			} else {
-				me.addPoints(1);
+				//me.addPoints(1);
 			
 				fields[x][y].setGraphic(new ImageView(image_floor));
 				x+=delta_x;
@@ -372,7 +372,7 @@ public class Main extends Application {
 			me.setXpos(x);
 			me.setYpos(y);
 			//Tæller måske dobbelt, men skal vist opdateres her iforhold til queue
-			me.addPoints(p);
+			me.setPoint(p);
 		}
 		else {
 			System.out.println("Someone else moved");

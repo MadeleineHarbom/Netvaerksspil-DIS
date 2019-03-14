@@ -67,4 +67,8 @@ public class Player {
 	public int getPreviousY() {
 		return this.ypre;
 	}
+
+	public void setPoint(int points) {
+		this.point = points;
+	}
 }
