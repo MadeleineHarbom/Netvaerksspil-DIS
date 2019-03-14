@@ -1,6 +1,8 @@
 package src;
 
 
+import javafx.application.Platform;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -11,7 +13,7 @@ public class Server {
 	static ArrayList<ConnectionToClientThread> mahThreads = new ArrayList<>();
 	static ArrayList<Player> players = new ArrayList<>(); //lave eventuelt til hashmap
 	static boolean gameon = false;
-	static ConnectionToClientThread[] queue = new ConnectionToClientThread[10000];
+	static String[] queue = new String[10000];
 	static int counter = 0;
 	static int queuesize = 0;
 
@@ -53,23 +55,28 @@ public class Server {
     	acceptThread aT = new acceptThread(serverSocket);
     	aT.start();
     	while (!gameon) {
-
+			System.out.println("Press ready!!!!");
 		}
 		//Broadcast
 
 
 		System.out.println("Loop change");
+		System.out.println("Loop change");
+		System.out.println("Loop change");
 
-    	while (gameon) {
-			System.out.println("Game on :)");
+    	while (true) {
     	    if (queuesize > counter) {
+				System.out.println("Entering gameloop");
 				gameLoop(); //enqueue...  static issues
-
-
             }
+            else {
+				Thread.sleep(10);
+				continue;
+			}
         }
 
        }
+
 
 
 
@@ -209,41 +216,52 @@ public class Server {
 
     }
 
-    public static void enqueue(ConnectionToClientThread thread) {
-        System.out.println("Enqueueing");
-        queue[queuesize] =  thread;
+    public static void enqueue(String message) {
+
+        queue[queuesize] =  message;
         queuesize++;
+		System.out.println("Enqueueing! Queuesize: " +  queuesize);
+		System.out.println("Counter: " + counter);
     }
 
-    public static ConnectionToClientThread dequeue() {
+    public static String dequeue() {
         System.out.println("dequeueing");
-        ConnectionToClientThread thread = queue[counter];
+        String thread = queue[counter];
         counter++;
         return thread;
 
     }
 
     public static void gameLoop() {
-        String[] s = dequeue().getString().split(" ");
+        String[] s = dequeue().split(" ");
         //kan jeg dette3 uden at starte traaden?
+		if (s.length == 0) {
+			System.out.println("I didnt get any information");
+		}
+		for (String sa : s) {
+			System.out.println(sa);
+		}
         Player mover = null;
         for (Player p : players) {
-            if (p.getName().equals(s[0])) {
+            if (p.getName().equals(s[1])) { //skal nok vaere 1+
                 mover = p;
             }
         }
         int x;
         int y;
         try {
-            x = Integer.parseInt(s[1]);
-            y = Integer.parseInt(s[2]);
+            x = Integer.parseInt(s[2]);
+            y = Integer.parseInt(s[3]);
         }
         catch (Exception e) {
             System.out.println("Parse issues");
             x =0;
             y=0;
         }
-        checkMove(x, y, mover);
+        if (mover != null) {
+			checkMove(x, y, mover);
+		}
+
     }
 
 

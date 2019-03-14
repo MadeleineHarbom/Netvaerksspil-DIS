@@ -36,8 +36,8 @@ public class ConnectionToClientThread extends Thread {
 
 	}
 
-	private void enqueue() {
-	    Server.enqueue(this);
+	private void enqueue(String message) {
+	    Server.enqueue(message);
     }
 	
 	
@@ -77,7 +77,7 @@ public class ConnectionToClientThread extends Thread {
 			makeChar(message);
 		}
 		else if (message.startsWith("move")) {
-		    Server.enqueue(this);
+		    Server.enqueue(message);
 			//move(message);
 
 		}
@@ -131,5 +131,6 @@ public class ConnectionToClientThread extends Thread {
         Server.broadcast("start");
         ready = true;
     }
+
 
 }

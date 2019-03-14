@@ -200,8 +200,8 @@ public class Main extends Application {
 		else {
 			Player p = getPlayerAt(x+delta_x,y+delta_y);
 			if (p!=null) {
-              me.addPoints(10);
-              p.addPoints(-10);
+//              me.addPoints(10);
+//              p.addPoints(-10);
 			} else {
 				me.addPoints(1);
 			
