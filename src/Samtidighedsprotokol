@@ -1,0 +1,9 @@
+Samtidighedsprotokol:
+
+- Der sendes en besked indledt af nøgleordet "move" til serveren. Beskeden indeholder navn, ønsket x, ønsket y og ønsket direction.
+
+- Serveren putter requesten i en kø.
+
+- Køen deques enkeltvis ved at tjekke resultatet af trækket. (Er der en player, mur eller ingenting)
+
+- Serveren broadcaster resultatet af den dequeuede request til alle klienter der så kan opdatere deres gui.
